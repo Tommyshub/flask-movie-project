@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Kalam&family=Permanent+Marker&display=swap");
+
+body {
+  background-color: #b8b08d;
+  padding-top: 35px;
+}
+
+.navbar-wrapper {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+  border-radius: 30px;
+  background-color: #283845;
+  box-shadow: 0 7px 12px 0 rgba(0, 0, 0, 0.6);
+}
+
+.navbar-wrapper li {
+  text-transform: uppercase;
+  font-family: "Kalam", cursive;
+  text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.6);
+}
+
+.navbar-wrapper li:hover {
+  background-color: #202c39;
+}
+
+.main-content {
+  padding: 5px;
+  text-align: center;
+  font-family: "Kalam", cursive;
+  text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.6);
+  color: #fff;
+  margin-top: 45px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  border-radius: 30px;
+  background-color: #283845;
+  box-shadow: 0 7px 12px 0 rgba(0, 0, 0, 0.6);
+}
