@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Kalam&family=Permanent+Marker&display=swap");
 
 body {
-  background-color: #b8b08d;
+  background-color: #a9bcd0;
   padding-top: 35px;
 }
 
@@ -39,4 +39,16 @@ body {
   border-radius: 30px;
   background-color: #283845;
   box-shadow: 0 7px 12px 0 rgba(0, 0, 0, 0.6);
+}
+
+.register-login-form {
+  margin: 15px;
+  box-shadow: 0 7px 12px 0 rgba(0, 0, 0, 0.6);
+  border-radius: 30px;
+}
+
+.submit-button {
+  margin: 15px;
+  box-shadow: 0 7px 12px 0 rgba(0, 0, 0, 0.6);
+  border-radius: 30px;
 }

@@ -1,0 +1,21 @@
+{% from "_formhelpers.html" import render_field %}
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <form class="col s12 m8 offset-m2 text-darken-2" method="POST" action="{{ url_for('register') }}">
+        <div class="card-panel register-login-form text-darken-2">
+            <dl>
+                {{ render_field(form.username) }}
+                {{ render_field(form.email) }}
+                {{ render_field(form.password) }}
+                {{ render_field(form.confirm) }}
+            </dl>
+        </div>
+        <input type=submit class="col s12 btn-large submit-button text-darken-2" value=Register>
+        <small>
+            <a class="btn-small submit-button" href="{{ url_for('login') }}">Already Have An Account?</a>
+        </small>
+    </form>
+</div>
+</div>
+{% endblock %}

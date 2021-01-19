@@ -4,9 +4,7 @@ from flask import (
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from werkzeug.security import generate_password_hash, check_password_hash
-if os.path.exists("env.py"):
-    import env
+from forms import RegistrationForm, LoginForm
 
 app = Flask(__name__)
 
@@ -19,8 +17,22 @@ mongo = PyMongo(app)
 
 @app.route("/")
 def index():
-
     return render_template("base.html")
+
+
+# Render registration form 
+@app.route("/register", methods=["POST", "GET"])
+def register():
+    form = RegistrationForm()
+    return render_template("register.html", title="register", form=form)
+
+
+# Render login form
+@app.route("/login")
+def login():
+    form = LoginForm()
+    return render_template("login.html", title="login", form=form)
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
