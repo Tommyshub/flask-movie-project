@@ -1,9 +1,10 @@
 {% from "_formhelpers.html" import render_field %}
 {% extends "base.html" %}
 {% block content %}
+<!-- Render registration field with python-->
 <div class="row">
-    <form class="col s12 m8 offset-m2 text-darken-2" method="POST" action="{{ url_for('register') }}">
-        <div class="card-panel register-login-form text-darken-2">
+    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register') }}">
+        <div class="card-panel register-login-form">
             <dl>
                 {{ render_field(form.username) }}
                 {{ render_field(form.email) }}
@@ -11,10 +12,9 @@
                 {{ render_field(form.confirm) }}
             </dl>
         </div>
-        <input type=submit class="col s12 btn-large submit-button text-darken-2" value=Register>
-        <small>
-            <a class="btn-small submit-button" href="{{ url_for('login') }}">Already Have An Account?</a>
-        </small>
+        <input type=submit class="col s12 btn-large submit-button" value=Register>
+        <a class="btn-small submit-button" href="{{ url_for('login') }}">Already Have An Account?</a>
+
     </form>
 </div>
 </div>

@@ -5,6 +5,7 @@ body {
   padding-top: 35px;
 }
 
+/* Navbar */
 .navbar-wrapper {
   display: block;
   margin-left: auto;
@@ -25,6 +26,7 @@ body {
   background-color: #202c39;
 }
 
+/* Main Div */
 .main-content {
   padding: 5px;
   text-align: center;
@@ -41,6 +43,12 @@ body {
   box-shadow: 0 7px 12px 0 rgba(0, 0, 0, 0.6);
 }
 
+/* Text in input fields */
+.main-content label {
+  color: dimgray;
+}
+
+/* Registration form */
 .register-login-form {
   margin: 15px;
   box-shadow: 0 7px 12px 0 rgba(0, 0, 0, 0.6);
@@ -50,5 +58,10 @@ body {
 .submit-button {
   margin: 15px;
   box-shadow: 0 7px 12px 0 rgba(0, 0, 0, 0.6);
+  border-radius: 30px;
+}
+
+.profile {
+  background-color: #283845;
   border-radius: 30px;
 }
