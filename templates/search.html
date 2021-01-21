@@ -1,0 +1,16 @@
+{% from "_formhelpers.html" import render_field %}
+{% extends "base.html" %}
+{% block content %}
+<!-- Render form to search for movies or shows -->
+<div class="row">
+    <form class="col s6 offset-m3" method="POST" action="{{ url_for('search') }}">
+        <div class="card-panel register-login-form">
+            <dl>
+                {{ render_field(form.search) }}
+            </dl>
+        </div>
+        <input type=submit class="col s4 btn-large offset-m4 submit-button" value=search>
+    </form>
+</div>
+</div>
+{% endblock %}

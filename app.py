@@ -5,7 +5,7 @@ from flask import (
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
-from forms import RegistrationForm, LoginForm
+from forms import RegistrationForm, LoginForm, SearchForm
 
 app = Flask(__name__)
 
@@ -18,13 +18,27 @@ mongo = PyMongo(app)
 
 # Route for the base template
 @app.route("/")
-def index():
+def base():
     return render_template("base.html")
+
+
+@app.route("/home")
+def home():
+    return render_template("home.html")
+
+# Route for search page 
+@app.route("/search", methods=["POST", "GET"])
+def search():
+    # Search form from forms.py
+    form = SearchForm()
+        
+    return render_template("search.html", title="search", form=form)
 
 
 # Route for user registration
 @app.route("/register", methods=["POST", "GET"])
 def register():
+    # Registration form from forms.py
     form = RegistrationForm()
     if request.method == "POST":
         # check if username already exists in db
@@ -53,6 +67,7 @@ def register():
 # Route for user Login
 @app.route("/login", methods=["POST", "GET"])
 def login():
+    # Login form from forms.py
     form = LoginForm()
     if request.method == "POST":
         # Check if the username exists in the database

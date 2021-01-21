@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextField
 from wtforms.validators import DataRequired, Email, EqualTo, Length
 import os
 if os.path.exists("env.py"):
@@ -24,3 +24,10 @@ class LoginForm(FlaskForm):
     password = PasswordField('Enter Password', validators = [DataRequired()])
     remember = BooleanField('Remember Me')
     submit = SubmitField()
+
+
+# Search Form
+class SearchForm(FlaskForm):
+    search = TextField('Search for Movie or Show', validators = [DataRequired(), 
+    Length(min=4, message=('Your message is too short.'))])
+    submit = SubmitField('Submit')
