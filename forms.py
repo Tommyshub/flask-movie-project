@@ -12,8 +12,7 @@ class RegistrationForm(FlaskForm):
     username = StringField('Username', validators = [DataRequired(), Length(min=4, max=25)])
     email = StringField('Email Address', validators = [DataRequired(), Length(min=4, max=25)])
     password = PasswordField('New Password', validators = [
-        DataRequired(), EqualTo('confirm', message='Passwords must match')
-    ])
+        DataRequired(), EqualTo('confirm', message='Passwords must match')])
     confirm = PasswordField('Repeat Password')
     submit = SubmitField()
 

@@ -1,13 +1,22 @@
 import os
 from flask import (
     Flask, flash, render_template,
-    redirect, request, session, url_for)
+    redirect, request, session, 
+    url_for, abort)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from forms import RegistrationForm, LoginForm, SearchForm
+from error_handlers import error_handlers
+from tmdb import tmdb
 
 app = Flask(__name__)
+
+# Blueprint for error_handlers.py
+app.register_blueprint(error_handlers, url_prefix="/error/")
+
+# Blueprint for the movie database 
+app.register_blueprint(tmdb)
 
 # Database access 
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
@@ -16,23 +25,28 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
+
 # Route for the base template
 @app.route("/")
 def base():
     return render_template("base.html")
 
 
+# Route for home 
 @app.route("/home")
 def home():
     return render_template("home.html")
 
+
 # Route for search page 
 @app.route("/search", methods=["POST", "GET"])
 def search():
-    # Search form from forms.py
     form = SearchForm()
-        
-    return render_template("search.html", title="search", form=form)
+    if request.method == "POST":
+        string = request.form["search"]
+        flash(f"Searching for {string}...")
+        return redirect(url_for("search"))
+    return render_template('search.html', form=form)
 
 
 # Route for user registration
@@ -103,9 +117,10 @@ def profile(username):
         {"username": session["user"]})["username"].capitalize()
     # Render user profile if there's a session cookie 
     if session["user"]:
-        return render_template("profile.html", username=username)
+        return render_template("profile.html", username=username, title="profile")
     # Otherwise redirect to login page
     return redirect(url_for("login"))
+
 
 # User Logout
 @app.route("/logout")
@@ -114,6 +129,7 @@ def logout():
     flash("You have been logged out")
     session.pop("user")
     return redirect(url_for("login"))
+
 
 
 if __name__ == "__main__":

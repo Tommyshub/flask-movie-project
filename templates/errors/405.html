@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- 404 Not found error page -->
+{% block title %} Method Not Allowed! {% endblock %}
+<div class="row">
+    <div class="col s12 m8 offset-m2">
+        <div class="card-panel profile">
+            <div class="center-align white-text text-darken-4">
+                <h3>Method is not supported for the requested resource. <a href="{{ url_for('home') }}">Click here</a> to return to the homepage.</h3>
+            </div>       
+        </div>
+    </div>
+</div>
+{% endblock %}

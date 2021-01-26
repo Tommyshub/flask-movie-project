@@ -3,7 +3,7 @@
 {% block content %}
 <!-- Render form to search for movies or shows -->
 <div class="row">
-    <form class="col s6 offset-m3" method="POST" action="{{ url_for('search') }}">
+    <form class="col s6 offset-m3" id="search" method="POST" action="{{ url_for('search') }}">
         <div class="card-panel register-login-form">
             <dl>
                 {{ render_field(form.search) }}
