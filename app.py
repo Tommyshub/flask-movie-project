@@ -2,13 +2,13 @@ import os
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, 
-    url_for, abort)
+    url_for, abort, Blueprint)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from forms import RegistrationForm, LoginForm, SearchForm
 from error_handlers import error_handlers
-from tmdb import tmdb
+from movie_search import movie_search
 
 app = Flask(__name__)
 
@@ -16,7 +16,7 @@ app = Flask(__name__)
 app.register_blueprint(error_handlers, url_prefix="/error/")
 
 # Blueprint for the movie database 
-app.register_blueprint(tmdb)
+app.register_blueprint(movie_search)
 
 # Database access 
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
@@ -24,7 +24,6 @@ app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
-
 
 # Route for the base template
 @app.route("/")
@@ -37,16 +36,6 @@ def base():
 def home():
     return render_template("home.html")
 
-
-# Route for search page 
-@app.route("/search", methods=["POST", "GET"])
-def search():
-    form = SearchForm()
-    if request.method == "POST":
-        string = request.form["search"]
-        flash(f"Searching for {string}...")
-        return redirect(url_for("search"))
-    return render_template('search.html', form=form)
 
 
 # Route for user registration

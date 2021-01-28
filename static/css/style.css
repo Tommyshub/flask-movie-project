@@ -65,3 +65,20 @@ body {
   background-color: #283845;
   border-radius: 30px;
 }
+
+.movie-frame {
+  margin: 25px;
+  box-shadow: 0 7px 12px 0 rgba(0, 0, 0, 0.6);
+  width: fit-content;
+  height: fit-content;
+}
+
+.movie-overview {
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.movie-image {
+  margin: 15px;
+}

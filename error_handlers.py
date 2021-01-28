@@ -1,7 +1,8 @@
 from flask import Blueprint, render_template, abort, json
 from werkzeug.exceptions import HTTPException
 
-error_handlers = Blueprint("error_handlers", __name__, static_folder="static", template_folder="templates/errors/")
+error_handlers = Blueprint("error_handlers", __name__, 
+static_folder="static", template_folder="templates/errors/")
 
 
 # Error handler for attribute errors 

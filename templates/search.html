@@ -3,14 +3,22 @@
 {% block content %}
 <!-- Render form to search for movies or shows -->
 <div class="row">
-    <form class="col s6 offset-m3" id="search" method="POST" action="{{ url_for('search') }}">
+    <form class="col s6 offset-m3" id="search" method="POST" action="{{ url_for('movie_search.search') }}">
         <div class="card-panel register-login-form">
             <dl>
                 {{ render_field(form.search) }}
-            </dl>
         </div>
         <input type=submit class="col s4 btn-large offset-m4 submit-button" value=search>
     </form>
-</div>
+    {% for res in movies %}
+         <div class="row">
+             <div class="col s6 offset-m3 movie-frame">
+                <div class="movie-title">{{ res.title }}</div>
+                <img class="movie-image" src="https://image.tmdb.org/t/p/w500/{{ res.poster_path }}" alt="Movie Poster">
+                <div class="movie-overview">{{ res.overview }}</div>
+             </div>
+         </div>
+    {% endfor %}
+    </div>
 </div>
 {% endblock %}
