@@ -1,1 +1,2 @@
-web: --bind 0.0.0.0:$PORT flaskapp:app
+web: gunicorn app:app
+web: gunicorn run:app 
