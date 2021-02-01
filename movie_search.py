@@ -2,10 +2,14 @@ from flask import Flask, flash, Blueprint, render_template, request, redirect, u
 import requests
 from tmdbv3api import TMDb, Movie
 from forms import SearchForm, SaveForm
-from tmdb_key import TMDB_KEY
 from bson.objectid import ObjectId
 from database import mongo
 import copy
+import os
+if os.path.exists("env.py"):
+    import env
+
+tmdb_key = os.environ.get("TMDB_KEY")
 
 # Blueprint for this file
 movie_search = Blueprint("movie_search", __name__, static_folder="static", template_folder="templates")
@@ -14,7 +18,7 @@ tmdb = TMDb()
 # Create an instance of the movie functionn
 movie = Movie()
 # Set API key
-tmdb.api_key = TMDB_KEY
+tmdb.api_key = tmdb_key
 # Default language for imports 
 tmdb.language = "en"
 # Html status codes 
