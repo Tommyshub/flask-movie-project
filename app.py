@@ -2,13 +2,16 @@ import os
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, 
-    url_for, abort, Blueprint)
+    url_for, abort, Blueprint, Response,)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from forms import RegistrationForm, LoginForm, SearchForm
 from error_handlers import error_handlers
 from movie_search import movie_search
+from database import database
+if os.path.exists("env.py"):
+    import env
 
 app = Flask(__name__)
 
@@ -18,12 +21,13 @@ app.register_blueprint(error_handlers, url_prefix="/error/")
 # Blueprint for the movie database 
 app.register_blueprint(movie_search)
 
+# Blueprint for the movie database
+app.register_blueprint(database)
+
 # Database access 
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
-
-mongo = PyMongo(app)
 
 # Route for the base template
 @app.route("/")

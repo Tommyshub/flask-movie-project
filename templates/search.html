@@ -6,16 +6,22 @@
     <form class="col s6 offset-m3" id="search" method="POST" action="{{ url_for('movie_search.search') }}">
         <div class="card-panel register-login-form">
             <dl>
-                {{ render_field(form.search) }}
+                {{ form.csrf_token }}
+                {{ render_field(form.search) }}        
         </div>
         <input type=submit class="col s4 btn-large offset-m4 submit-button" value=search>
     </form>
     {% for res in movies %}
          <div class="row">
-             <div class="col s6 offset-m3 movie-frame">
+             <div class="col s4 offset-m4 black movie-frame">
+                <div class="movie-id">{{ res.id }}</div>
                 <div class="movie-title">{{ res.title }}</div>
                 <img class="movie-image" src="https://image.tmdb.org/t/p/w500/{{ res.poster_path }}" alt="Movie Poster">
-                <div class="movie-overview">{{ res.overview }}</div>
+                <form class="col s4 offset-m4" id="save" method="POST" action="{{ url_for('movie_search.save_movie') }}">
+                    {{ form.csrf_token }}
+                    <input type="submit" class="col btn-small offset-m4" value=save name="save">
+                </form>
+                <div class="col s12 movie-overview">{{ res.overview }}</div>                
              </div>
          </div>
     {% endfor %}

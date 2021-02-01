@@ -67,6 +67,7 @@ body {
 }
 
 .movie-frame {
+  border-radius: 30px;
   margin: 25px;
   box-shadow: 0 7px 12px 0 rgba(0, 0, 0, 0.6);
   width: fit-content;
