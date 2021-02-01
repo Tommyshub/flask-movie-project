@@ -9,7 +9,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from forms import RegistrationForm, LoginForm, SearchForm
 from error_handlers import error_handlers
 from movie_search import movie_search
-from database import database
+from database import mongo
 if os.path.exists("env.py"):
     import env
 
