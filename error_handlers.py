@@ -5,6 +5,12 @@ error_handlers = Blueprint("error_handlers", __name__,
 static_folder="static", template_folder="templates/errors/")
 
 
+# Error handler for attribute errors 
+@error_handlers.app_errorhandler(Exception)
+def handle_bad_request(e):
+    if type(AttributeError):
+        return render_template("error.html")
+    return render_template("error.html")
 
 
 # Error handler for 403 unauthorized

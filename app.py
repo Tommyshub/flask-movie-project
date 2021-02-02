@@ -1,3 +1,4 @@
+
 import os
 from flask import (
     Flask, flash, render_template,
@@ -17,17 +18,18 @@ app = Flask(__name__)
 
 # Blueprint for error_handlers.py
 app.register_blueprint(error_handlers, url_prefix="/error/")
-
 # Blueprint for the movie database 
 app.register_blueprint(movie_search)
-
 # Blueprint for the movie database
 app.register_blueprint(database)
-
-# Database access 
+# Get database access from env.py
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+# Get secret key from env.py
 app.secret_key = os.environ.get("SECRET_KEY")
+# Initiate PyMongo
+mongo.init_app(app)
+
 
 # Route for the base template
 @app.route("/")
@@ -39,7 +41,6 @@ def base():
 @app.route("/home")
 def home():
     return render_template("home.html")
-
 
 
 # Route for user registration
@@ -124,9 +125,7 @@ def logout():
     return redirect(url_for("login"))
 
 
-
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
             debug=True)
-
