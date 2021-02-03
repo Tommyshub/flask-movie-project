@@ -29,7 +29,8 @@ class SearchForm(FlaskForm):
     
 
 # Save form 
-class SaveForm(FlaskForm):
-     submit = SubmitField('save')
-   
+class MovieForm(FlaskForm):
+    movie_name = StringField('Movie Name', validators = [DataRequired(), Length(min=1, max=25)])
+    movie_id = StringField('Movie ID', validators = [DataRequired(), Length(min=1, max=25)])
+
     

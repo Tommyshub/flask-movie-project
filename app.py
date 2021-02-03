@@ -10,7 +10,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from forms import RegistrationForm, LoginForm, SearchForm
 from error_handlers import error_handlers
 from movie_search import movie_search
-from database import database, mongo
+from database import mongo
 if os.path.exists("env.py"):
     import env
 
@@ -20,8 +20,6 @@ app = Flask(__name__)
 app.register_blueprint(error_handlers, url_prefix="/error/")
 # Blueprint for the movie database 
 app.register_blueprint(movie_search)
-# Blueprint for the movie database
-app.register_blueprint(database)
 # Get database access from env.py
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
@@ -31,21 +29,28 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo.init_app(app)
 
 
-# Route for the base template
+
 @app.route("/")
 def base():
+    """
+    Route for the base template
+    """
     return render_template("base.html")
 
 
-# Route for home 
 @app.route("/home")
 def home():
+    """
+    Route for home 
+    """
     return render_template("home.html")
 
 
-# Route for user registration
 @app.route("/register", methods=["POST", "GET"])
 def register():
+    """
+    Route for user registration
+    """
     # Registration form from forms.py
     form = RegistrationForm()
     if request.method == "POST":
@@ -75,7 +80,9 @@ def register():
 # Route for user Login
 @app.route("/login", methods=["POST", "GET"])
 def login():
-    # Login form from forms.py
+    """
+    Route for user login
+    """
     form = LoginForm()
     if request.method == "POST":
         # Check if the username exists in the database
@@ -103,25 +110,29 @@ def login():
     return render_template("login.html", title="login", form=form)
 
 
-# Route for user profile 
+
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
-    # grab the session user's username from db
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"].capitalize()
-    # Render user profile if there's a session cookie 
-    if session["user"]:
+    """
+    User Profile where the user can edit or delete the users own reviews.
+    """
+    if session.get('user'): # check if the user is logged in
+        # Grab the session user's username from db
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"].capitalize()
         return render_template("profile.html", username=username, title="profile")
-    # Otherwise redirect to login page
     return redirect(url_for("login"))
 
 
-# User Logout
+
 @app.route("/logout")
 def logout():
+    """
+    User Logout by removing the user from the user session
+    """
     # remove user from session cookie
     flash("You have been logged out")
-    session.pop("user")
+    session.pop("user", None)
     return redirect(url_for("login"))
 
 
