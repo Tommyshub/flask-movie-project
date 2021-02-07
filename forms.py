@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextField, TextAreaField
 from wtforms.validators import DataRequired, Email, EqualTo, Length
 
 
@@ -24,13 +24,16 @@ class LoginForm(FlaskForm):
 # Search Form
 class SearchForm(FlaskForm):
     search = TextField('Search for Movie or Show', validators = [DataRequired(), 
-    Length(min=4, message=('Your message is too short.'))])
+    Length(min=2, message=('Your message is too short.'))])
 
     
 
-# Save form 
+# Movie form 
 class MovieForm(FlaskForm):
-    movie_name = StringField('Movie Name', validators = [DataRequired(), Length(min=1, max=25)])
     movie_id = StringField('Movie ID', validators = [DataRequired(), Length(min=1, max=25)])
-
-    
+    movie_title = StringField('Movie Title', validators = [DataRequired(), Length(min=1, max=25)])
+    poster_path = StringField('Poster Path', validators = [DataRequired(), Length(min=1, max=25)])
+    movie_overview = StringField('Movie Overview', validators = [DataRequired(), Length(min=1, max=25)])
+    review = TextAreaField(u'Create Review', validators = [DataRequired(), Length(min=1, max=400)])
+    submit = SubmitField()
+    create = SubmitField()

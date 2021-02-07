@@ -1,0 +1,18 @@
+{% from "_formhelpers.html" import render_field %}
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="black col offset-m1 s4 review-frame">
+        <div class="review-title">{{ movie_title }}</div>
+        <img class="review-image" src="https://image.tmdb.org/t/p/w500/{{ poster_path }}" alt="Movie Poster">
+        <div class="col s12 review-overview">{{ movie_overview }}</div>
+    </div>
+    <div class="col s6">
+        <form id="create" method="POST" action="{{ url_for('movie_search.create_review', movie_id=movie_id) }}">
+            {{ form.csrf_token }}
+            {{ render_field(form.review, extra_classes='review-input') }}
+            <input type=submit class="btn-large submit-button" value="Submit Review">
+        </form>
+    </div> 
+</div>
+{% endblock %}
