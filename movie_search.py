@@ -41,22 +41,19 @@ def create_review(movie_id):
     movie_overview = request.form["movie_overview"]
     poster_path = request.form["poster_path"]
     backdrop_path = request.form["backdrop_path"]
-    # Check if the movie id already exists in db
+     # Check if the movie id already exists in db
     existing_movie = mongo.db.movies.find_one(
         {"movie_id": request.form.get("movie_id")})
     # If the user press create and if the movie does not exist in the database 
     if request.method == 'POST' and not existing_movie:
-        print(backdrop_path)
         # Insert movie id, title poster path and overview in the database
         mongo.db.movies.insert_one({'movie_id': request.form['movie_id'], 
                                     'movie_title': request.form['movie_title'],
                                     'poster_path': request.form['poster_path'],
                                     'movie_overview': request.form['movie_overview']})
         # If the user press create and if the movie exists in the database
-        if request.method == 'POST' and existing_movie:
-            print("Den finns")
+    if request.method == 'POST' and existing_movie:
+        print("Movie already exists in the database")
 
     return render_template('create_a_review.html', form=form, 
     movie_id=movie_id, movie_title=movie_title, movie_overview=movie_overview, poster_path=poster_path)
-
-

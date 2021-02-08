@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <p>Hey</p>
+<div class="row">
+{% for movie in movies %}
+<div class="black col s3 push-s1 home-movie-frame">
+  <div class="review-title">{{ movie.movie_title }}</div>
+  <img class="review-image" src="https://image.tmdb.org/t/p/w300/{{ movie.poster_path }}" alt="Movie Poster">
+  <div class="col s12 review-overview">{{ movie.movie_overview }}</div>
+</div>
+{% endfor %}
+</div>
 
 {% endblock %}
