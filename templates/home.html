@@ -1,14 +1,53 @@
+{% from "_formhelpers.html" import render_field %}
 {% extends "base.html" %}
 {% block content %}
-
-<div class="row">
-{% for movie in movies %}
-<div class="black col s3 push-s1 home-movie-frame">
-  <div class="review-title">{{ movie.movie_title }}</div>
-  <img class="review-image" src="https://image.tmdb.org/t/p/w300/{{ movie.poster_path }}" alt="Movie Poster">
-  <div class="col s12 review-overview">{{ movie.movie_overview }}</div>
+<!-- Form for searching for movies -->
+<div class="row s12 main-wrapper">
+    <h4>Search for a movie to review and save to your profile</h4>
+    <div class="container offset-m2 col s12">
+        <form  id="search" method="POST" action="{{ url_for('movie_search.home') }}">
+            <div class="card-panel movie-search-form">
+                {{ form.csrf_token }}
+                {{ render_field(form.search) }}
+            </div>
+            <input type=submit class="btn-large submit-button" value=search>
+        </form>
+    </div>
+    
+    <!-- Creates a movie card for every result in movies -->
+    {% for res in movies %}
+    <div class="col s3">
+        <div class="black container movie-frame">
+            <div class="review-title">{{ res.title }}</div>
+            <img class="review-image" src="https://image.tmdb.org/t/p/w300/{{ res.poster_path }}" alt="Movie Poster">
+            <form id="create" method="POST" action="{{ url_for('movie_search.create_review', movie_id=res.id) }}">
+            {{ form.csrf_token }}
+            <!-- Save movie information so that it can be accessed from python -->
+            <input type="hidden" name="backdrop_path" value="{{res.backdrop_path}}">
+            <input type="hidden" name="movie_id" value="{{res.id}}">
+            <input type="hidden" name="movie_title" value="{{res.title}}">
+            <input type="hidden" name="poster_path" value="{{res.poster_path}}">
+            <input type="hidden" name="movie_overview" value="{{res.overview}}">
+            <input type="submit" class="btn-small" value="create" name="Create">
+            </form>
+            <div class="review-overview">{{ res.overview | truncate(220) | safe }}</div>
+        </div>
+    </div>
+    {% endfor %} 
 </div>
-{% endfor %}
+<!-- Display all ovies that exists in the database -->
+<div class="row s12 main-wrapper">
+    <h4>Click on any movie to view reviews or to create your own</h4>
+    {% for movie in moviez %}
+    <div class="col s3">
+      <div class=" black container text-white movie-frame">
+        <div class="review-title center-align">{{ movie.movie_title }}</div>
+        <a href="{{ url_for('movie_search.add_review', movie_id=movie.movie_id) }}">
+            <img class="review-image" src="https://image.tmdb.org/t/p/w300/{{ movie.poster_path }}" alt="Movie Poster">
+        </a>
+        <div class="review-overview center-align">{{ movie.movie_overview }}</div>
+      </div>
+    </div>
+    {% endfor %}   
 </div>
-
 {% endblock %}

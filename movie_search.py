@@ -19,8 +19,11 @@ tmdb.api_key = os.environ.get("TMDB_KEY")
 # Default language for imports 
 tmdb.language = "en"
 
-@movie_search.route("/search", methods=["POST", "GET"])
-def search():
+@movie_search.route("/home", methods=["POST", "GET"])
+
+def home():
+    # Fetch all information about all movies from the movies database in order to display it in the html
+    moviez = mongo.db.movies.find({}, {'movie_id': 1, 'movie_title': 1, 'movie_overview': 1, 'poster_path': 1, '_id': 0})
     form = SearchForm()
     if form.validate_on_submit():
         # Setting user input to string
@@ -29,8 +32,9 @@ def search():
         flash(f"Searching for {string}...")
         # Search for movie with user input from html form
         movies = movie.search(string)
-        return render_template('search.html', movies=movies, form=form)
-    return render_template('search.html', form=form)
+        return render_template('home.html', movies=movies, moviez=list(moviez), form=form)
+    return render_template('home.html', moviez=list(moviez), form=form)
+
 
 
 @movie_search.route("/create_review/<movie_id>", methods=["POST", "GET"])
@@ -52,7 +56,7 @@ def create_review(movie_id):
                                     'poster_path': request.form['poster_path'],
                                     'movie_overview': request.form['movie_overview']})
         # If the user press create and if the movie exists in the database
-    if request.method == 'POST' and existing_movie:
+    elif request.method == 'POST' and existing_movie:
         print("Movie already exists in the database")
 
     return render_template('create_a_review.html', form=form, 

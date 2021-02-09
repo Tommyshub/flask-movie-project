@@ -36,17 +36,8 @@ def base():
     """
     Route for the base template
     """
-    return render_template("base.html")
+    return render_template("home.html")
 
-
-@app.route("/home")
-def home():
-    """
-    Route for home 
-    """
-    # Fetch all information about all movies from the movies database in order to display it in the html
-    movies = mongo.db.movies.find({}, {'movie_id': 1, 'movie_title': 1, 'movie_overview': 1, 'poster_path': 1, '_id': 0})
-    return render_template("home.html", movies=list(movies))
 
 
 @app.route("/register", methods=["POST", "GET"])
