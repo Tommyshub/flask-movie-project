@@ -23,7 +23,7 @@ class LoginForm(FlaskForm):
 
 # Search Form
 class SearchForm(FlaskForm):
-    search = TextField('Search for Movie or Show', validators = [DataRequired(), 
+    search = TextField('Search for Movies', validators = [DataRequired(), 
     Length(min=2, message=('Your message is too short.'))])
 
     
