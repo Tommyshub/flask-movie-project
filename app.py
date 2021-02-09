@@ -36,7 +36,7 @@ def base():
     """
     Route for the base template
     """
-    return render_template("home.html")
+    return render_template("base.html")
 
 
 

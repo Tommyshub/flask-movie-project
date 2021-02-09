@@ -3,15 +3,17 @@
 {% block content %}
 <!-- Form for searching for movies -->
 <div class="row s12 main-wrapper">
-    <h4>Search for a movie to review and save to your profile</h4>
-    <div class="container offset-m2 col s12">
-        <form  id="search" method="POST" action="{{ url_for('movie_search.home') }}">
-            <div class="card-panel movie-search-form">
-                {{ form.csrf_token }}
-                {{ render_field(form.search) }}
-            </div>
-            <input type=submit class="btn-large submit-button" value=search>
-        </form>
+    <div class="row s12">
+        <h4>Search for a movie to review and save to your profile</h4>
+        <div class="container offset-m4 col s4">
+            <form  class="s2" id="search" method="POST" action="{{ url_for('movie_search.home') }}">
+                <div class="card-panel movie-search-form">
+                    {{ form.csrf_token }}
+                    {{ render_field(form.search) }}
+                </div>
+                <input type=submit class="btn-large submit-button" value=search>
+            </form>
+        </div>
     </div>
     
     <!-- Creates a movie card for every result in movies -->

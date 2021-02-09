@@ -61,3 +61,11 @@ def create_review(movie_id):
 
     return render_template('create_a_review.html', form=form, 
     movie_id=movie_id, movie_title=movie_title, movie_overview=movie_overview, poster_path=poster_path)
+
+
+@movie_search.route("/add_review/<movie_id>", methods=["POST", "GET"])
+def add_review(movie_id):
+    # Check if the movie id exists in the database
+    existing_movie = mongo.db.movies.find_one(
+        {"movie_id": request.form.get("movie_id")})
+ 
