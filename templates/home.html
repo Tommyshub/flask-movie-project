@@ -22,7 +22,7 @@
         <div class="black container movie-frame">
             <div class="review-title">{{ res.title }}</div>
             <img class="review-image" src="https://image.tmdb.org/t/p/w300/{{ res.poster_path }}" alt="Movie Poster">
-            <form id="create" method="POST" action="{{ url_for('movie_search.create_review', movie_id=res.id) }}">
+            <form id="create" method="POST" action="{{ url_for('movie_search.review', movie_id=res.id) }}">
             {{ form.csrf_token }}
             <!-- Save movie information so that it can be accessed from python -->
             <input type="hidden" name="backdrop_path" value="{{res.backdrop_path}}">
@@ -44,7 +44,7 @@
     <div class="col s3">
       <div class=" black container text-white movie-frame">
         <div class="review-title center-align">{{ movie.movie_title }}</div>
-        <a href="{{ url_for('movie_search.add_review', movie_id=movie.movie_id) }}">
+        <a href="{{ url_for('movie_search.review', movie_id=movie.movie_id) }}">
             <img class="review-image" src="https://image.tmdb.org/t/p/w300/{{ movie.poster_path }}" alt="Movie Poster">
         </a>
         <div class="review-overview center-align">{{ movie.movie_overview }}</div>

@@ -37,14 +37,14 @@ def home():
 
 
 
-@movie_search.route("/create_review/<movie_id>", methods=["POST", "GET"])
-def create_review(movie_id):
+@movie_search.route("/review/<movie_id>", methods=["POST", "GET"])
+def review(movie_id):
     form = MovieForm()
     # Create veriables for title, overview and post path. 
-    movie_title = request.form["movie_title"]
-    movie_overview = request.form["movie_overview"]
-    poster_path = request.form["poster_path"]
-    backdrop_path = request.form["backdrop_path"]
+    movie = mongo.db.movies.find_one({"movie_id": movie_id})
+    movie_title = movie['movie_title']
+    movie_overview = movie['movie_overview']
+    poster_path = movie['poster_path']
      # Check if the movie id already exists in db
     existing_movie = mongo.db.movies.find_one(
         {"movie_id": request.form.get("movie_id")})
@@ -60,15 +60,3 @@ def create_review(movie_id):
         print("Movie exists already")
     return render_template('review.html', form=form, 
     movie_id=movie_id, movie_title=movie_title, movie_overview=movie_overview, poster_path=poster_path)
-
-
-@movie_search.route("/add_review/<movie_id>", methods=["POST", "GET"])
-def add_review(movie_id):
-    form = MovieForm()
-    movie = mongo.db.movies.find_one({"movie_id": movie_id})
-    movie_title = movie['movie_title']
-    movie_overview = movie['movie_overview']
-    poster_path = movie['poster_path']
-    if request.method == 'post' and request.form['review'] == 'submit':
-        print("connected")
-    return render_template('review.html', form=form, movie_id=movie_id, movie_title=movie_title, movie_overview=movie_overview, poster_path=poster_path) 

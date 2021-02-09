@@ -10,7 +10,7 @@
             <div class="col s12 review-overview">{{ movie_overview }}</div>
         </div>
         <div class="col s6">
-            <form id="create" method="POST" action="{{ url_for('movie_search.create_review', movie_id=movie_id) }}">
+            <form id="create" method="POST" action="{{ url_for('movie_search.review', movie_id=movie_id) }}">
                 {{ form.csrf_token }}
                 {{ render_field(form.review) }}
                 {% for res in movie %}
