@@ -34,5 +34,5 @@ class MovieForm(FlaskForm):
     movie_title = StringField('Movie Title', validators = [DataRequired(), Length(min=1, max=25)])
     poster_path = StringField('Poster Path', validators = [DataRequired(), Length(min=1, max=25)])
     movie_overview = StringField('Movie Overview', validators = [DataRequired(), Length(min=1, max=25)])
-    review = TextAreaField('Create Review', validators = [DataRequired(), Length(min=1, max=400)])
+    review = TextAreaField('', validators = [DataRequired(), Length(min=1, max=400)])
     submit = SubmitField()
