@@ -1,4 +1,3 @@
-
 import os
 import json
 from flask import (
@@ -30,14 +29,12 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo.init_app(app)
 
 
-
 @app.route("/")
 def base():
     """
     Route for the base template
     """
     return render_template("base.html")
-
 
 
 @app.route("/register", methods=["POST", "GET"])
