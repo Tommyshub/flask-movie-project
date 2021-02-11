@@ -13,19 +13,22 @@
             <form method="POST" action="{{ url_for('movie_search.review', movie_id=movie_id) }}">
                 {{ form.csrf_token }}
                 {{ render_field(form.review) }}
-                {% for res in movie %}
-                <input type="hidden" name="backdrop_path" value="{{res.backdrop_path}}">
-                <input type="hidden" name="movie_id" value="{{res.id}}">
-                <input type="hidden" name="movie_title" value="{{res.title}}">
-                <input type="hidden" name="poster_path" value="{{res.poster_path}}">
-                <input type="hidden" name="movie_overview" value="{{res.overview}}">
-                <input type="hidden" name="username" value="{{username}}">
-                {% endfor %} 
                 <input type=submit class="btn-large submit-button" name="review" value="Submit Review">
             </form>
         </div> 
     </div>
 </div>
+{% for review in movie_reviews %}
+{% if movie_reviews == 1 %}
+<div class="row main-wrapper">  
+    <div class="col white-text container">
+        <h5>{{ review.movie_title }}</h5>     
+        <div>{{ review.review_text }}</div>
+        <small>posted by: {{ review.username }}</small>
+    </div> 
+</div>
+{% endif %}
+{% endfor %}  
 {% endblock %}
 
 

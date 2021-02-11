@@ -22,8 +22,7 @@
         <div class="black container movie-frame">
             <div class="review-title">{{ res.title }}</div>
             <img class="review-image" src="https://image.tmdb.org/t/p/w300/{{ res.poster_path }}" alt="Movie Poster">
-            <form id="create" method="POST" action="{{ url_for('movie_search.review', movie_id=res.id) }}">
-            {{ form.csrf_token }}
+            <form id="create" value="create" method="POST" action="{{ url_for('movie_search.review', movie_id=res.id) }}">
             <!-- Save movie information so that it can be accessed from python -->
             <input type="hidden" name="backdrop_path" value="{{res.backdrop_path}}">
             <input type="hidden" name="movie_id" value="{{res.id}}">
@@ -36,7 +35,7 @@
     </div>
     {% endfor %} 
 </div>
-<!-- Display all ovies that exists in the database -->
+<!-- Display all movies that exists in the database -->
 <div class="row main-wrapper">
     <h4>Click on any movie to view reviews or to create your own</h4>
     {% for movie in home_movies %}

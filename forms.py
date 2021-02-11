@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextField, TextAreaField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextField, TextAreaField, Form
 from wtforms.validators import DataRequired, Email, EqualTo, Length
 
 
@@ -23,7 +23,7 @@ class LoginForm(FlaskForm):
 
 # Search Form
 class SearchForm(FlaskForm):
-    search = TextField('Search for Movies', validators = [DataRequired(), 
+    search = TextField('', validators = [DataRequired(), 
     Length(min=2, message=('Your message is too short.'))])
 
     
@@ -35,4 +35,4 @@ class MovieForm(FlaskForm):
     poster_path = StringField('Poster Path', validators = [DataRequired(), Length(min=1, max=25)])
     movie_overview = StringField('Movie Overview', validators = [DataRequired(), Length(min=1, max=25)])
     review = TextAreaField('', validators = [DataRequired(), Length(min=1, max=400)])
-    submit = SubmitField()
+    create = SubmitField()
