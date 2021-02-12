@@ -41,20 +41,23 @@ def review(movie_id):
     # Get currrent user 
     user = mongo.db.users.find_one(
     {"username": session["user"]})["username"].capitalize()
-    existing_movie = mongo.db.collection_name.find({"movie_id" : movie_id})
+    # Create veriables for title, overview and post path. 
+    movie = mongo.db.movies.find_one({"movie_id": movie_id})
+    movie_title = movie['movie_title']
+    movie_overview = movie['movie_overview']
+    poster_path = movie['poster_path']
     # Information about the review to send to the database 
     review_info = {
         "movie_id": movie_id,
         "username": user,
         "review_text": request.form.get("review")
     }
-    movie_title = mongo.db.movie.find_one()
      # Fetch all information about all movies from the movies database in order to display it in the html
     movie_reviews = mongo.db.movies.find({}, {'movie_id': 1, 'movie_title': 1, 'movie_overview': 1, 'poster_path': 1, '_id': 0})
     # If the user press create and if the movie does not exist in the database 
-    if form.create.data and request.method == 'POST': 
+    if form.create.data and request.method == 'POST':
         # Insert movie id, title poster path and overview in the database
-        mongo.db.movies.insert_one({'movie_id': request.form['movie_title'], 
+        mongo.db.movies.insert_one({'movie_id': request.form['movie_id'], 
                                     'movie_title': request.form['movie_title'],
                                     'poster_path': request.form['poster_path'],
                                     'movie_overview': request.form['movie_overview']})
@@ -62,4 +65,4 @@ def review(movie_id):
     if form.review.data and request.method == 'POST':
         mongo.db.reviews.insert_one(review_info)
         print(review_info)
-    return render_template('review.html', form=form, movie_reviews=list(movie_reviews), movie_id=movie_id)  
+    return render_template('review.html', form=form, movie_reviews=list(movie_reviews), movie_id=movie_id, movie_title=movie_title, movie_overview=movie_overview, poster_path=poster_path)
