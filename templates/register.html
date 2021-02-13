@@ -4,7 +4,7 @@
 <!-- Render registration field with python-->
 <div class="row col s12 main-wrapper">
     <div class="row">
-        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register') }}">
+        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('auth.register') }}">
             <div class="card-panel register-login-form">
                 <dl>
                     {{ render_field(form.username) }}
@@ -14,7 +14,7 @@
                 </dl>
             </div>
             <input type=submit class="col s12 btn-large submit-button" value=Register>
-            <a class="btn-small submit-button" href="{{ url_for('login') }}">Already Have An Account?</a>
+            <a class="btn-small submit-button" href="{{ url_for('auth.login') }}">Already Have An Account?</a>
         </form>
     </div>
 </div>

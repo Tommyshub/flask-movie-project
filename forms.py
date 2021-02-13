@@ -12,14 +12,12 @@ class RegistrationForm(FlaskForm):
     confirm = PasswordField('Repeat Password')
     
 
-
 # Login Form
 class LoginForm(FlaskForm):
     username = StringField('Username', validators = [DataRequired(), Length(min=4, max=25)])
     password = PasswordField('Enter Password', validators = [DataRequired()])
     remember = BooleanField('Remember Me')
    
-    
 
 # Search Form
 class SearchForm(FlaskForm):
@@ -27,7 +25,6 @@ class SearchForm(FlaskForm):
     Length(min=2, message=('Your message is too short.'))])
 
     
-
 # Movie form 
 class MovieForm(FlaskForm):
     movie_id = StringField('Movie ID', validators = [DataRequired(), Length(min=1, max=25)])

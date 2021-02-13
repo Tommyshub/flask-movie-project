@@ -23,11 +23,11 @@
               <!-- If statement so that different pages are not displayed at the same time  -->
               {% if session.user %}
               <li><a href="{{ url_for('movie_search.home') }}">Home</a></li>
-              <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-              <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+              <li><a href="{{ url_for('auth.profile', username=session['user']) }}">Profile</a></li>
+              <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
               {% else %}
-              <li><a href="{{ url_for('login') }}">Login</a></li>
-              <li><a href="{{ url_for('register') }}">Register</a></li>
+              <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+              <li><a href="{{ url_for('auth.register') }}">Register</a></li>
               {% endif %}
             </ul>
           </div>
