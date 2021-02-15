@@ -31,7 +31,6 @@ body {
   padding: 5px;
   text-align: center;
   font-family: "Kalam", cursive;
-  text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.6);
   color: #fff;
   margin-top: 45px;
   margin-bottom: 45px;
@@ -99,7 +98,7 @@ body {
 #review {
   margin-top: 45px;
   margin-bottom: 25px;
-  height: 865px;
+  height: 710px;
   border-radius: 15px;
   background-color: #f8f8f8;
 }
@@ -121,6 +120,10 @@ body {
 .movie-search-form {
   box-shadow: 0 7px 12px 0 rgba(0, 0, 0, 0.6);
   border-radius: 30px;
+}
+
+.review-by {
+  font-size: 10px;
 }
 
 /* On screens that are 1553px or less */

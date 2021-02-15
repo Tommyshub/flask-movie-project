@@ -19,6 +19,7 @@ tmdb.api_key = os.environ.get("TMDB_KEY")
 # Default language for imports 
 tmdb.language = "en"
 
+
 @movie_search.route("/home", methods=["POST", "GET"])
 def home():
     # Fetch all information about all movies from the movies database in order to display it in the html
@@ -41,12 +42,14 @@ def review(movie_id):
     # Get currrent user 
     user = mongo.db.users.find_one(
     {"username": session["user"]})["username"].capitalize()
-    # Create veriables for title, overview and post path. 
+    # Create veriables for title, overview and post path.
     movie = mongo.db.movies.find_one({"movie_id": movie_id})
-    movie_title = movie['movie_title']
-    movie_overview = movie['movie_overview']
-    poster_path = movie['poster_path']
-    # Information about the review to send to the database 
+    # Information about the review to send to the database
+    for key, value in movie.items():
+        movie_title = movie["movie_title"]
+        movie_overview = movie["movie_overview"]
+        poster_path = movie["poster_path"]
+
     review_info = {
         "movie_id": movie_id,
         "movie_title": movie_title,
@@ -60,12 +63,13 @@ def review(movie_id):
         "movie_overview": movie_overview,
         "poster_path": poster_path
     }
-     # Fetch all information about all movies from the movies database in order to display it in the html
+    # Fetch all information about all movies from the movies database in order to display it in the html
     movie_reviews = mongo.db.reviews.find({}, {'movie_id': 1, 'movie_title': 1, 'username': 1, 'review_text': 1, '_id': 0})
     # If the user press create and if the movie does not exist in the database 
     if form.create.data and request.method == 'POST':
-        # Insert movie id, title poster path and overview in the database
+        # Insert movie informationin the database
         mongo.db.movies.insert_one(movie_info)
+        print(movie_info)
     # Send information from the review form to the database 
     if form.review.data and request.method == 'POST':
         mongo.db.reviews.insert_one(review_info)

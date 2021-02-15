@@ -18,16 +18,19 @@
         </div> 
     </div>
 </div>
+{% if movie_reviews is not none %}
 {% for item in movie_reviews %}
+{% if movie_id == item['movie_id'] %}
 <div class="row main-wrapper">  
     <div class="col white-text container">
         <h5>{{ item['movie_title'] }}</h5>     
-        <div>{{ item['review_text'] }}</div>
+        <div> {{ item['review_text'] }}</div>
         <small>posted by: {{ item['username'] }}</small>
     </div> 
 </div>
+{% endif %}
 {% endfor %}  
+{% endif %}
 {% endblock %}
-
 
 
