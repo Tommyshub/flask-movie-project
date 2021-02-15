@@ -64,7 +64,7 @@ def review(movie_id):
         "poster_path": poster_path
     }
     # Fetch all information about all movies from the movies database in order to display it in the html
-    movie_reviews = mongo.db.reviews.find({}, {'movie_id': 1, 'movie_title': 1, 'username': 1, 'review_text': 1, '_id': 0})
+    reviews = mongo.db.reviews.find({}, {'movie_id': 1, 'movie_title': 1, 'username': 1, 'review_text': 1, '_id': 0})
     # If the user press create and if the movie does not exist in the database 
     if form.create.data and request.method == 'POST':
         # Insert movie informationin the database
@@ -74,4 +74,4 @@ def review(movie_id):
     if form.review.data and request.method == 'POST':
         mongo.db.reviews.insert_one(review_info)
         print(review_info)
-    return render_template('review.html', form=form, movie_reviews=list(movie_reviews), movie_id=movie_id, movie_title=movie_title, movie_overview=movie_overview, poster_path=poster_path)
+    return render_template('review.html', form=form, reviews=list(reviews), movie_id=movie_id, movie_title=movie_title, movie_overview=movie_overview, poster_path=poster_path)

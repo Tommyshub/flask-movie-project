@@ -85,20 +85,15 @@ def profile(username):
     """
     User Profile where the user can edit or delete the users own reviews.
     """
+    # Fetch all reviews
+    reviews = mongo.db.reviews.find({}, {'movie_id': 1, 'movie_title': 1, 'username': 1, 'review_text': 1, '_id': 0})
     if session.get('user'): # check if the user is logged in
         # Find username in the database
         username = mongo.db.users.find_one({"username": 
+        # Get the username from the session and capitilize it
         session["user"]})["username"].capitalize()
         # Find reviews connected to the username
-        user_reviews = mongo.db.reviews.find_one({"username": username})
-        # If there's any existing reviews
-        if user_reviews is not None:
-            for key, value in user_reviews.items():
-                movie_id = user_reviews["movie_id"]
-                movie_title = user_reviews["movie_title"]
-                review_text = user_reviews["review_text"]
-                return render_template("profile.html", username=username, movie_id=movie_id, movie_title=movie_title, review_text=review_text, title="profile")
-        return render_template("profile.html", username=username, title="profile")
+        return render_template("profile.html", reviews=list(reviews), username=username, title="profile")
     return redirect(url_for("auth.login"))
 
 

@@ -122,10 +122,6 @@ body {
   border-radius: 30px;
 }
 
-.review-by {
-  font-size: 10px;
-}
-
 /* On screens that are 1553px or less */
 @media screen and (max-width: 1553px) {
   .main-wrapper {
