@@ -2,7 +2,7 @@
 
 <br/>
 
-The goal of this site is to provide a movie review page where the user can search for any movie via the movia database and create a review for it.
+The goal of this site is to provide a movie review page where the user can search for any movie via the movie database and create a review for it.
 
 <br/>
 
@@ -22,9 +22,9 @@ As a movie enthusiast,
 
 <br/>
 
-- I want to be able to search for movies I am intrested in.
+- I want to be able to search for movies I am interested in.
 
-- I want to be able to review movies I am intrested in.
+- I want to be able to review movies I am interested in.
 
 - I want to have a profile page where I can see my own reviews.
 
@@ -68,7 +68,7 @@ As a site owner, I want
 
 - The users need to have their own profiles where they can view and edit their own reviews.
 
-- Reviews from the database needs to be displayed under each movie but also on the users profile.
+- Reviews from the database needs to be displayed under each movie but also on the user's profile.
 
 <br/>
 
@@ -92,7 +92,7 @@ As a site owner, I want
 
 <br/>
 
-Because the users are going to create and edit reviews there needs to be an authentication system. I took what I learned from the code along project at [school](https://codeinstitute.net/) and created my own in this project. The users can register, login, logout and view their profiles. This is the first part that the users will be exposed to so it also needs to be made clear what the site is here.
+Because the users are going to create and edit reviews there needs to be an authentication system. I took what I learned from the code along project at [school](https://codeinstitute.net/) and created my own in this project. The users can register, login, logout and view their profiles. This is the first part that the users will be exposed to, so it also needs to be made clear what the site is here.
 
 <br/>
 
@@ -100,7 +100,7 @@ Because the users are going to create and edit reviews there needs to be an auth
 
 <br/>
 
-Here the users can search for movies that will be displayed in cards and if they click on create they will be redirected to the review page where they can create and view already existing reviews if there's any there.
+Here the users can search for movies that will be displayed in cards and if they click on create, they will be redirected to the review page where they can create and view already existing reviews if there is any there.
 
 <br/>
 
@@ -120,7 +120,7 @@ This is where the users can view or create their own reviews. The movie informat
 
 <br/>
 
-Here I want the users to be able to view their reviews but also edit and delete them. I would also like for them to be able to change their password and delete their users but this is something I might leave for future implementations.
+Here I want the users to be able to view their reviews but also edit and delete them. I would also like for them to be able to change their password and delete their users, but this is something I might leave for future implementations.
 
 <br/>
 
@@ -128,7 +128,7 @@ Here I want the users to be able to view their reviews but also edit and delete 
 
 <br/>
 
-This is something that my mentor Reuben Ferrante advicced me to impliment at the start of the project and he showed me where I could read how to do it. I wrote one function for each error code at first but Reuben showed me how I could do it with less repetition.
+This is something that my mentor Reuben Ferrante adviced me to implement at the start of the project and he showed me where I could read how to do it. I wrote one function for each error code at first, but Reuben showed me how I could do it with less repetition.
 
 <br/>
 
@@ -136,8 +136,8 @@ This is something that my mentor Reuben Ferrante advicced me to impliment at the
 
 <br/>
 
-I decided to use flask blueprints in order to brake up the page in different parts.
-I think that this makes the code a bit easier to follow and understand but it also allows me to in a very easy way use for example the authentication part in another app in the future.
+I decided to use flask blueprints to brake up the page in different parts.
+I think that this makes the code a bit easier to follow and understand but it also allows me to in an easy way use for example the authentication part in another app in the future.
 
 <br/>
 
@@ -145,15 +145,15 @@ I think that this makes the code a bit easier to follow and understand but it al
 
 <br/>
 
-I used figma to create my wireframes and while most things are exactly as I show in the wireframes there are a few thins that I did change and I will explain why here:
+I used figma to create my wireframes and while most things are exactly as I show in the wireframes there are a few things that I did change, and I will explain why here:
 
 <br/>
 
-- I moved the edit and delete buttons so that they are displayed on the review page and on the profile page for the users. But only if the user created the post. This is so that only the user that actually made the post can edit or delete it.
+- I moved the edit and delete buttons so that they are displayed on the review page and on the profile page for the users. But only if the user created the post. This is so that only the user that made the post can edit or delete it.
 
 <br/>
 
-- I also removed the star button, I did this because the movie database actually have a rating system built in and if I were going to use anything like that I would have used their built in one. But at the end I decided against both options and removed the function completely.
+- I also removed the star button; I did this because the movie database actually has a rating system built in and if I were going to use anything like that I would have used their built in one. But at the end I decided against both options and removed the function completely.
 
 <br/>
 
@@ -161,7 +161,7 @@ I used figma to create my wireframes and while most things are exactly as I show
 
 <br/>
 
-- I did not take the profile page in to considiration when I created the wireframes so that is not shown there. I also added a link to the home page because of the profile and this changed the look of my navbar a bit.
+- I did not take the profile page into consideration when I created the wireframes so that is not shown there. I also added a link to the home page because of the profile and this changed the look of my navbar a bit.
 
 <br/>
 
@@ -231,7 +231,7 @@ I used this automated tool to check if there were any security issues in my code
 
 <br/>
 
-I will look into this issue and if needed, do something about it before the last deployment.
+I will investigate this issue and if needed, do something about it before the last deployment.
 
 <br/>
 
@@ -243,7 +243,7 @@ I will look into this issue and if needed, do something about it before the last
 
 <br/>
 
-This is something I intend to do as a last step so I will add the information after that.
+(This is something I intend to do as a last step, I will add the information after that.)
 
 <br/>
 
@@ -259,9 +259,9 @@ I did have two issues that I knew about before but I will write about them here 
 
 <br/>
 
-- My forms du not empty (the text stays after submitting). This is something I need to look into how to solve with wtforms and I will do this before submitting my project.
+- My forms do not empty (the text stays after submitting). I need to investigate how to solve this with wtforms before submitting my project.
 
-- The users can still post endless of reviews per video and I will write a conditional statement to adress this soon.
+- The users can still post endless of reviews per video and I will write a conditional statement to address this soon.
 
 <br/>
 
@@ -273,7 +273,7 @@ I did have two issues that I knew about before but I will write about them here 
 
 <br/>
 
-I made the following steps in deploying my site:
+I performed the following steps in deploying my site:
 
 <br/>
 
@@ -307,7 +307,7 @@ I made the following steps in deploying my site:
 
 <br/>
 
-You can [go here](https://flask-movie-project.herokuapp.com/) if you are intrested in checking out my website.
+You can [go here](https://flask-movie-project.herokuapp.com/) if you are interested in checking out my website.
 
 <br/>
 
@@ -344,15 +344,11 @@ I have spent countless hours on YouTube, Stack Overflow and Google researching h
 
 <br/>
 
-It would have been hard for me to create this project without that help, but I did notice that I had to rely on online content much less to create this project compared to the last one.
+It would have been difficult for me to create this project without that help, but I did notice that I had to rely on online content much less to create this project compared to the last one.
 
 <br/>
 
-This time I felt like I could code much of the code and only rely on google if I got stuck.
-
-<br/>
-
-### Reuben Ferrante
+### Mentor
 
 <br/>
 
