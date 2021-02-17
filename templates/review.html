@@ -1,3 +1,4 @@
+
 {% from "_formhelpers.html" import render_field %}
 {% extends "base.html" %}
 {% block content %}
@@ -26,17 +27,13 @@
 {% if movie_id == item['movie_id'] %}
 <!-- Display movie the movie title, review text and username -->
 <div class="row main-wrapper">  
-    <div class="xl-4">
-        <div class="col white-text container">
-            <h5>{{ item['movie_title'] }}</h5>     
-            <div> {{ item['review_text'] }}</div>
-            <small>posted by: {{ item['username'] }}</small>
-        </div> 
-    </div>
+    <div class="white-text container">
+        <h5>{{ item['movie_title'] }}</h5>     
+        <div> {{ item['review_text'] }}</div>
+        <small>posted by: {{ item['username'] }}</small>
+    </div> 
 </div>
 {% endif %}
 {% endfor %}  
 {% endif %}
 {% endblock %}
-
-

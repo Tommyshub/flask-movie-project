@@ -1,33 +1,33 @@
 {% extends "base.html" %}
 {% block content %}
 <!-- User profile -->
-<div class="row col s12 main-wrapper">
-    <div class="row">
-        <div class="col s12 m8 offset-m2">
-            <div class="profile">
-                <h3 class="center-align white-text text-darken-4">
-                    {{ username }}'s Profile
-                </h3>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="row main-wrapper">
-        <!-- If the movie reviews variable is not empty -->
-        {% if reviews is not none %}
-        <!-- Get all items in movie_reviews -->
-        {% for item in reviews %}
-        <!-- If the current username exists in movie reviews -->
-        {% if username == item['username'] %}
-        <!-- Display movie the movie title, review text and username -->
-            <div class="xl-4">
-                <div class="col white-text container">
-                    <h5>{{ item['movie_title'] }}</h5>     
-                    <div> {{ item['review_text'] }}</div>
-                </div> 
-            </div>
-        {% endif %}
-        {% endfor %}  
-        {% endif %}
+    <div class="profile">
+        <h3 class="center-align white-text text-darken-4">
+            {{ username }}'s Profile
+        </h3>
+    </div
+    <!-- If the movie reviews variable is not empty -->
+
+
+    <form id="delete" name="delete" method="POST" action="{{ url_for('auth.profile', username=username) }}">
+    <!-- If the movie reviews variable is not empty -->
+    {% if reviews is not none %}
+    <!-- Get all items in movie_reviews -->
+    {% for item in reviews %}
+    <!-- If the current username exists in movie reviews -->
+    {% if username == item['username'] %}
+    <!-- Display movie the movie title, review text and username -->
+    <div class="white-text container">
+        <h5>{{ item['movie_title'] }}</h5>     
+        <div> {{ item['review_text'] }}</div>
+        <input type="hidden" name="delete" value="{{ item['_id'] }}">
+        <input type="submit" class="btn-small submit-button" value=delete>
+        {{ form.csrf_token }}
+    </div>
+    {% endif %}
+    {% endfor %}  
+    {% endif %}
+    </form> 
 </div>
 {% endblock %}

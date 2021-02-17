@@ -33,3 +33,8 @@ class MovieForm(FlaskForm):
     movie_overview = StringField('Movie Overview', validators = [DataRequired(), Length(min=1, max=25)])
     review = TextAreaField('', validators = [DataRequired(), Length(min=1, max=400)])
     create = SubmitField()
+
+
+class DeleteForm(FlaskForm):
+    delete = StringField('Delete ID', validators = [DataRequired(), Length(min=1, max=25)])
+    
