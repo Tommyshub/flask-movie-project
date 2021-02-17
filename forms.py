@@ -32,6 +32,7 @@ class MovieForm(FlaskForm):
     poster_path = StringField('Poster Path', validators = [DataRequired(), Length(min=1, max=25)])
     movie_overview = StringField('Movie Overview', validators = [DataRequired(), Length(min=1, max=25)])
     review = TextAreaField('', validators = [DataRequired(), Length(min=1, max=400)])
+    delete = StringField('Delete ID', validators = [DataRequired(), Length(min=1, max=25)])
     create = SubmitField()
 
 
