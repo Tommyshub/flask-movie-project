@@ -1,9 +1,8 @@
-tmdbv3api==1.7.4
 WTForms==2.3.3
-Flask_WTF==0.14.3
+tmdbsimple==2.8.0
 Flask==1.1.2
-pymongo==3.11.2
-requests==2.25.1
-Flask_PyMongo==2.3.0
 Werkzeug==1.0.1
-dnspython==2.1.0
+Flask_PyMongo==2.3.0
+pymongo==3.11.3
+requests==2.25.1
+Flask_WTF==0.14.3
