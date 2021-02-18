@@ -8,10 +8,6 @@
         </h3>
     </div
     <!-- If the movie reviews variable is not empty -->
-
-
-    <form id="delete" name="delete" method="POST" action="{{ url_for('auth.profile', username=username) }}">
-    <!-- If the movie reviews variable is not empty -->
     {% if reviews is not none %}
     <!-- Get all items in movie_reviews -->
     {% for item in reviews %}
@@ -21,13 +17,11 @@
     <div class="white-text container">
         <h5>{{ item['movie_title'] }}</h5>     
         <div> {{ item['review_text'] }}</div>
-        <input type="hidden" name="delete" value="{{ item['_id'] }}">
-        <input type="submit" class="btn-small submit-button" value=delete>
-        {{ form.csrf_token }}
+        <a class="btn-small submit-button" href="{{ url_for('movie_search.edit_review', review_id=item['_id']) }}">Edit</a>
+        <a class="btn-small submit-button" href="{{ url_for('movie_search.delete', review_id=item['_id']) }}">Delete</a> 
     </div>
     {% endif %}
     {% endfor %}  
     {% endif %}
-    </form> 
 </div>
 {% endblock %}

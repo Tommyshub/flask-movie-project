@@ -103,6 +103,15 @@ body {
   background-color: #f8f8f8;
 }
 
+#edit-review {
+  margin-top: 45px;
+  margin-bottom: 25px;
+  width: 68%;
+  height: 340px;
+  border-radius: 15px;
+  background-color: #f8f8f8;
+}
+
 .movie-frame {
   color: white;
   padding: 5px;

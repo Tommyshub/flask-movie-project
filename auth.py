@@ -7,7 +7,7 @@ from flask import (
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
-from forms import RegistrationForm, LoginForm, SearchForm, DeleteForm
+from forms import RegistrationForm, LoginForm, SearchForm
 from database import mongo
 
 
@@ -86,17 +86,12 @@ def profile(username):
     User Profile where the user can edit or delete the users own reviews.
     """
     # Fetch all reviews
-    form = DeleteForm()
     reviews = mongo.db.reviews.find({}, {'movie_id': 1, 'movie_title': 1, 'username': 1, 'review_text': 1, '_id': 1})
     if session.get('user'): # check if the user is logged in
         # Find username in the database
         username = mongo.db.users.find_one(
             {"username":session["user"]})["username"].capitalize()
-        if form.validate_on_submit():
-            delete_id = request.form.get("delete")
-            mongo.db.reviews.remove( {"_id": ObjectId(delete_id) });
-            print(ObjectId(delete_id))
-        return render_template("profile.html", reviews=list(reviews), username=username, title="profile", form=form)
+        return render_template("profile.html", reviews=list(reviews), username=username, title="profile")
     return redirect(url_for("auth.login"))
 
 
