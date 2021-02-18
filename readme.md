@@ -352,4 +352,4 @@ It would have been difficult for me to create this project without that help, bu
 
 <br>
 
-I would also like to thank my mentor Reuben Ferrante, his help and advice during this project has been absolutely invaluable. There were times during this project when I had no clue what to do next but I got to the next step with his help,
+I would also like to thank my mentor Reuben Ferrante, his help and advice during this project has been absolutely invaluable. There were times during this project when I had no clue what to do next but I got to the next step with his help.
