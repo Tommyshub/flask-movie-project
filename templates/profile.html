@@ -2,6 +2,14 @@
 {% block content %}
 <!-- User profile -->
 <div class="row main-wrapper">
+    <!-- flash messages -->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+        <p>{{ message }}</p>
+    {% endfor %}
+    {% endif %}
+    {% endwith %} 
     <div class="profile">
         <h3 class="center-align white-text text-darken-4">
             {{ username }}'s Profile

@@ -2,7 +2,16 @@
 {% from "_formhelpers.html" import render_field %}
 {% extends "base.html" %}
 {% block content %}
+
 <div class="row main-wrapper">
+    <!-- flash messages -->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+        <p>{{ message }}</p>
+    {% endfor %}
+    {% endif %}
+    {% endwith %} 
     <div class="row">
         <h4 class="white-text center-align">Wiew reviews or create your own</h4>
         <div class="black text-white col container push-s1 s10 push-m1 m4 push-l1 l4 push-xl1 xl4 review-frame">
@@ -14,7 +23,7 @@
             <form method="POST" action="{{ url_for('movie_search.review', movie_id=movie_id) }}">
                 {{ form.csrf_token }}
                 {{ render_field(form.review) }}
-                <input type=submit class="btn-large submit-button" name="review" value="Submit Review">
+                <input type="submit" class="btn-large submit-button" name="review" value="Submit Review">
             </form>
         </div> 
     </div>

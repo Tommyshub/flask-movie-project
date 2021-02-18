@@ -3,6 +3,14 @@
 {% block content %}
 <!-- Form for searching for movies -->
 <div class="row s12 main-wrapper">
+    <!-- flash messages -->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+        <p>{{ message }}</p>
+    {% endfor %}
+    {% endif %}
+    {% endwith %} 
     <div class="row s12">
         <h4>Search for a movie to review and save to your profile</h4>
         <div class="container">

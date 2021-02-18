@@ -2,7 +2,15 @@
 {% extends "base.html" %}
 {% block content %}
 <!-- Render login field with python -->
-<div class="row col s12 main-wrapper">
+<div class="row main-wrapper">
+    <!-- flash messages -->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+        <p>{{ message }}</p>
+    {% endfor %}
+    {% endif %}
+    {% endwith %} 
     <div class="row">
         <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('auth.login') }}">
             <div class="card-panel register-login-form">
