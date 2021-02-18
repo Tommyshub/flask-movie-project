@@ -35,7 +35,6 @@
 <!-- If the current movie id exists in movie reviews -->
 {% if movie_id == item['movie_id'] %}
 <!-- Display movie the movie title, review text and username -->
-<form id="delete" name="delete" method="POST" action="{{ url_for('movie_search.review', movie_id=movie_id, user=user) }}">
 <div class="row main-wrapper">  
     <div class="white-text container">
         <h5>{{ item['movie_title'] }}</h5>     
@@ -48,7 +47,6 @@
     {{ form.csrf_token }}
     {% endif %} 
 </div>
-</form>
 {% endif %}
 {% endfor %}  
 {% endif %}

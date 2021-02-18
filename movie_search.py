@@ -5,7 +5,7 @@ url_for, Response,
 session, abort)
 import requests
 import tmdbsimple as tmdb, requests
-from forms import SearchForm, MovieForm
+from forms import ReviewForm
 from bson.objectid import ObjectId
 from database import mongo
 import os
@@ -29,8 +29,8 @@ def home():
     # Fetch all information about all movies from the movies database in order to display it in the html
     home_movies = mongo.db.movies.find({}, {'movie_id': 1, 
     'movie_title': 1, 'movie_overview': 1, 'poster_path': 1, '_id': 0})
-    form = SearchForm()
-    if form.validate_on_submit():
+    form = ReviewForm()
+    if form.search.data and request.method == 'POST':
        
         # Setting user input to string
         string = request.form["search"]
@@ -40,31 +40,55 @@ def home():
        
         # Search for movie with user input from html form
         movies = search.movie(query=string)
-        form.search.data = ""      
-        return render_template('home.html', movies=movies, 
-        search=search, home_movies=list(home_movies), form=form)
+        form.search.data = ""
+        return redirect(url_for('movie_search.home'))
     return render_template('home.html', 
     search=search, home_movies=list(home_movies), form=form)
 
 
-@movie_search.route("/review/<movie_id>", methods=["POST", "GET"])
-def review(movie_id):
-    form = MovieForm()
-    
-    #  Get current user for review info
-    user = mongo.db.users.find_one(
-    {"username": session["user"]})["username"].capitalize()
-    
+@movie_search.route("/create/<movie_id>", methods=["POST", "GET"])
+def create(movie_id):
+    form = ReviewForm()
     # Connection to the movie database
     movie = tmdb.Movies(movie_id)
     response = movie.info()
-    
     # Create veriables for title, overview and post path.
     movie_title = movie.title
     movie_id = movie.id
     movie_overview = movie.overview
     poster_path = movie.poster_path
+    # Check if the movie exists in the database
+    existing_movie = mongo.db.movies.find_one({"movie_id": movie_id})
     
+    # Information about the movie to send to the database
+    movie_info = {
+        "movie_id": movie_id,
+        "movie_title": movie_title,
+        "movie_overview": movie_overview,
+        "poster_path": poster_path
+    }
+
+    if form.create.data and request.method == 'POST':
+         mongo.db.reviews.insert_one(review_info)           
+
+        return redirect(url_for('movie_search.review', movie_id=movie_id))
+    return redirect(url_for('movie_search.review', form=form, movie_id=movie_id, 
+    movie_title=movie_title, movie_overview=movie_overview, poster_path=poster_path))
+
+
+@movie_search.route("/review/<movie_id>", methods=["POST", "GET"])
+def review(movie_id):
+    form = ReviewForm()   
+    #  Get current user for review info
+    user = session["user"].capitalize()
+    # Connection to the movie database
+    movie = tmdb.Movies(movie_id)
+    response = movie.info()
+    # Create veriables for title, overview and post path.
+    movie_title = movie.title
+    movie_id = movie.id
+    movie_overview = movie.overview
+    poster_path = movie.poster_path
     # Information about all movies that will be sent to the review page
     reviews = list(mongo.db.reviews.find({}, {'movie_id': 1, 
     'movie_title': 1, 'username': 1, 'review_text': 1, '_id': 1}))
@@ -76,19 +100,11 @@ def review(movie_id):
         "username": user,
         "review_text": request.form.get("review")
     }
-    # Information about the movie to send to the database
-    movie_info = {
-        "movie_id": movie_id,
-        "movie_title": movie_title,
-        "movie_overview": movie_overview,
-        "poster_path": poster_path
-    }
     
     if form.review.data and request.method == 'POST':
-            mongo.db.reviews.insert_one(review_info)
-            mongo.db.movies.insert_one(movie_info)
-        
-    
+        mongo.db.reviews.insert_one(review_info)
+
+        return redirect(url_for('movie_search.review', movie_id=movie_id))
     return render_template('review.html', form=form, reviews=reviews, 
     movie_id=movie_id, movie_title=movie_title, 
     movie_overview=movie_overview, poster_path=poster_path, user=user)

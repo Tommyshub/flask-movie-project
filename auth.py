@@ -7,7 +7,7 @@ from flask import (
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
-from forms import RegistrationForm, LoginForm, SearchForm
+from forms import RegistrationForm, LoginForm
 from database import mongo
 
 

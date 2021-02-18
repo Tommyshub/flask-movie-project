@@ -30,13 +30,14 @@
         <div class="black container movie-frame">
             <div class="review-title">{{ res.title }}</div>
             <img class="review-image" src="https://image.tmdb.org/t/p/w300/{{ res.poster_path }}" alt="Movie Poster">
-            <form id="create" value="create" method="POST" action="{{ url_for('movie_search.review', movie_id=res.id) }}">
-            <!-- Save movie information so that it can be accessed from python -->
-            <input type="hidden" name="movie_id" value="{{res['id']}}">
-            <input type="hidden" name="movie_title" value="{{res['title']}}">
-            <input type="hidden" name="poster_path" value="{{res['poster_path']}}">
-            <input type="hidden" name="movie_overview" value="{{res['overview']}}">
-            <input type="submit" class="btn-small" value="create" name="Create">
+            <form id="create" value="create" method="POST" action="{{ url_for('movie_search.create', movie_id=res.id) }}">
+                <!-- Save movie information so that it can be accessed from python -->
+                <input type="hidden" name="movie_id" value="{{res['id']}}">
+                <input type="hidden" name="movie_title" value="{{res['title']}}">
+                <input type="hidden" name="poster_path" value="{{res['poster_path']}}">
+                <input type="hidden" name="movie_overview" value="{{res['overview']}}">
+                {{ form.csrf_token }}
+                {{ render_field(form.create) }}
             </form>
         </div>
     </div>
