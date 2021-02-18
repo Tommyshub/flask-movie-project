@@ -1,15 +1,13 @@
 {% extends "base.html" %}
+{% block title %} Not Implemented! {% endblock %}
 {% block content %}
-<div class="row col s12 main-wrapper">
-<!-- 404 Not found error page -->
-{% block title %} Attribute Error! {% endblock %}
-    <div class="row">
-        <div class="col s12 m8 offset-m2">
-            <div class="card-panel profile">
-                <div class="center-align white-text text-darken-4">
-                    <h3>There's been an error! <a href="{{ url_for('movie_search.home') }}">Click here</a> to return to the homepage.</h3>
-                </div>       
-            </div>
+<div class="row">
+    <div class="container">
+        <div class="profile">
+            <div class="center-align white-text text-darken-4">
+                <h3>{{ error_message }}</h3>
+                <h4><a href="{{ url_for('movie_search.home') }}">Click here</a> to return to the homepage.</h4>
+            </div>      
         </div>
     </div>
 </div>

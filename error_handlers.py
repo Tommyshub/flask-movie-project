@@ -24,5 +24,5 @@ def handle_bad_request(e):
     # Print the error message if the error code exists in error messages
     if e.code in error_messages:
         error_message = error_messages[e.code]
-        return render_template(f"{e.code}.html", error_message=error_message)
-    return render_template("error.html")
+    return render_template("error.html", error_message=error_message)
+    
