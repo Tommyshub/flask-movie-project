@@ -57,9 +57,8 @@ def create(movie_id):
     movie_id = movie.id
     movie_overview = movie.overview
     poster_path = movie.poster_path
-    # Check if the movie exists in the database
-    existing_movie = mongo.db.movies.find_one({"movie_id": movie_id})
-    
+    # Check if how many times the movie id exists in the database
+    existing_movie = mongo.db.movies.find({"movie_id": movie_id},{'_id':0}).count()
     # Information about the movie to send to the database
     movie_info = {
         "movie_id": movie_id,
@@ -69,11 +68,18 @@ def create(movie_id):
     }
 
     if form.create.data and request.method == 'POST':
-         mongo.db.reviews.insert_one(review_info)           
+        # If the movie id exists less than 1 one time 
+        if existing_movie >= 1:
+            flash("Redirected to existing review!")
+        # If the movie id does not exist in the database
+        else:
+            flash("Created Movie!")
+            # Insert movie information   
+            mongo.db.reviews.insert_one(movie_info)           
+    return render_template('review.html', form=form, 
+    movie_id=movie_id, movie_title=movie_title, 
+    movie_overview=movie_overview, poster_path=poster_path)
 
-        return redirect(url_for('movie_search.review', movie_id=movie_id))
-    return redirect(url_for('movie_search.review', form=form, movie_id=movie_id, 
-    movie_title=movie_title, movie_overview=movie_overview, poster_path=poster_path))
 
 
 @movie_search.route("/review/<movie_id>", methods=["POST", "GET"])
@@ -92,6 +98,7 @@ def review(movie_id):
     # Information about all movies that will be sent to the review page
     reviews = list(mongo.db.reviews.find({}, {'movie_id': 1, 
     'movie_title': 1, 'username': 1, 'review_text': 1, '_id': 1}))
+    # Existing review for the if statement
     
     # Review information to send to the database
     review_info = {
@@ -104,7 +111,6 @@ def review(movie_id):
     if form.review.data and request.method == 'POST':
         mongo.db.reviews.insert_one(review_info)
 
-        return redirect(url_for('movie_search.review', movie_id=movie_id))
     return render_template('review.html', form=form, reviews=reviews, 
     movie_id=movie_id, movie_title=movie_title, 
     movie_overview=movie_overview, poster_path=poster_path, user=user)
