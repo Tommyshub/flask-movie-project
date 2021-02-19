@@ -205,6 +205,10 @@ You can [go here](https://flask-movie-project.herokuapp.com/) if you are interes
 
 ## Credits
 
+I got inspired of how to handle the edit and delete forms from this project after being pointed towards it by my mentor:
+
+[DenyTsjapanov](https://github.com/DenyTsjapanov/Milestone-Project-3/blob/main/app.py)
+
 ### Content
 
 I used what I learned at the [code institute](https://codeinstitute.net/)
