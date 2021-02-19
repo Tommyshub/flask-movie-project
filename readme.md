@@ -155,6 +155,10 @@ The users could add endless of the same movie but I have fixed this with a condi
 
 The same problem occurs when the user submits reviews but I have sadly not yet fixed this, because I ran out of time.
 
+I manually test the responsiveness and fixed the issues that I noticed with media queries. I also set images from the movie database to less than 100% to get it to work good.
+
+I also noticed that the search results when searching for movies do not clear as they should, but sadly this is also something I didn't have time to fix.
+
 ## Deployment
 
 ### I created this site with vscode and git and pushed it to github where I published the site.
@@ -215,3 +219,15 @@ It would have been difficult for me to create this project without that help, bu
 ### Mentor
 
 I would also like to thank my mentor Reuben Ferrante, his help and advice during this project has been absolutely invaluable. There were times during this project when I had no clue what to do next but I got to the next step with his help.
+
+## My reflections on the project
+
+I am proud of this project and I feel like I have learned a lot when creating it, but I regret not having time to fix the last things that I wanted to.
+
+For future projects I should laern to step away from a problem and do something else, either coding or something else.
+
+I spent too much time on issues I had with wtforms and handling of data and I think that it would have been good for me to take a step back and do something else instead of obsessing on an issue that I could not find the answer to at the moment.
+
+I noticed that the answers came to me during breaks when I did other things.
+
+I also knew that I did not have much time when I started this project and I should have managed my time a little bit better so that I could spend the last days testing and fine tuning the project and this is something that I need to keep in mind for future projects.
