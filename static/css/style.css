@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Kalam&family=Permanent+Marker&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Old+Standard+TT:wght@400;700&display=swap");
 
 body {
   background-color: gray;
@@ -19,7 +19,7 @@ body {
 
 .navbar-wrapper li {
   text-transform: uppercase;
-  font-family: "Kalam", cursive;
+  font-family: "Old Standard TT", serif;
   text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.6);
 }
 
@@ -31,7 +31,7 @@ body {
 .main-wrapper {
   padding: 5px;
   text-align: center;
-  font-family: "Kalam", cursive;
+  font-family: "Old Standard TT", serif;
   color: #fff;
   margin-top: 45px;
   margin-bottom: 45px;
