@@ -98,7 +98,6 @@ def review(movie_id):
     # Information about all movies that will be sent to the review page
     reviews = list(mongo.db.reviews.find({}, {'movie_id': 1, 
     'movie_title': 1, 'username': 1, 'review_text': 1, '_id': 1}))
-    # Existing review for the if statement
     
     # Review information to send to the database
     review_info = {
@@ -110,9 +109,8 @@ def review(movie_id):
     
     if form.review.data and request.method == 'POST':
         mongo.db.reviews.insert_one(review_info)
-
-    return render_template('review.html', form=form, reviews=reviews, 
-    movie_id=movie_id, movie_title=movie_title, 
+    
+    return render_template('review.html', form=form, reviews=reviews, movie_id=movie_id, movie_title=movie_title, 
     movie_overview=movie_overview, poster_path=poster_path, user=user)
 
 

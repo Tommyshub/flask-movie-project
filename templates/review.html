@@ -37,8 +37,8 @@
 <!-- Display movie the movie title, review text and username -->
 <div class="row main-wrapper">  
     <div class="white-text container">
-        <h5>{{ item['movie_title'] }}</h5>     
-        <div> {{ item['review_text'] }}</div>
+        <h4>{{ item['movie_title'] }}</h4>     
+        <h5> {{ item['review_text'] }}</h5>
         <small>posted by: {{ item['username'] }}</small>
     </div>
     {% if user == item['username'] %}
