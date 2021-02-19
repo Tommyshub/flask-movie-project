@@ -1,12 +1,42 @@
 @import url("https://fonts.googleapis.com/css2?family=Old+Standard+TT:wght@400;700&display=swap");
 
+/* 
+ ###############
+ General  Styles
+ ############### 
+ */
+
 body {
   background-color: gray;
   line-height: 1.9;
   padding-top: 35px;
 }
 
-/* Navbar */
+/* Div where main content are */
+.main-wrapper {
+  padding: 5px;
+  text-align: center;
+  font-family: "Old Standard TT", serif;
+  color: #fff;
+  margin-top: 45px;
+  margin-bottom: 45px;
+  height: fit-content;
+  width: 98%;
+  border-radius: 30px;
+  background-color: #283845;
+  box-shadow: 0 7px 12px 0 rgba(0, 0, 0, 0.6);
+}
+
+.main-wrapper label {
+  color: dimgray;
+}
+
+/* 
+ ###############
+   Navbar
+ ############### 
+ */
+
 .navbar-wrapper {
   display: block;
   margin-left: auto;
@@ -27,24 +57,15 @@ body {
   background-color: #202c39;
 }
 
-/* Div where main content are */
-.main-wrapper {
-  padding: 5px;
-  text-align: center;
-  font-family: "Old Standard TT", serif;
-  color: #fff;
-  margin-top: 45px;
-  margin-bottom: 45px;
-  height: fit-content;
-  width: 98%;
-  border-radius: 30px;
-  background-color: #283845;
-  box-shadow: 0 7px 12px 0 rgba(0, 0, 0, 0.6);
-}
+/* 
+ ###############
+   Account
+ ############### 
+ */
 
-/* Text in input fields */
-.main-wrapper label {
-  color: dimgray;
+.profile {
+  background-color: #283845;
+  border-radius: 30px;
 }
 
 /* Registration form */
@@ -60,10 +81,11 @@ body {
   border-radius: 30px;
 }
 
-.profile {
-  background-color: #283845;
-  border-radius: 30px;
-}
+/* 
+ ###############
+    Movies
+ ############### 
+ */
 
 .movie-frame {
   border-radius: 30px;
@@ -82,6 +104,31 @@ body {
 .movie-image {
   margin: 15px;
 }
+
+.movie-frame {
+  color: white;
+  padding: 5px;
+  border-radius: 30px;
+  box-shadow: 0 7px 12px 0 rgba(0, 0, 0, 0.6);
+  width: fit-content;
+  height: fit-content;
+}
+
+.movie-frame img {
+  padding: 15px;
+}
+
+/* Registration form */
+.movie-search-form {
+  box-shadow: 0 7px 12px 0 rgba(0, 0, 0, 0.6);
+  border-radius: 30px;
+}
+
+/* 
+ ###############
+   Reviews
+ ############### 
+ */
 
 .review-frame {
   color: white;
@@ -113,24 +160,11 @@ body {
   background-color: #f8f8f8;
 }
 
-.movie-frame {
-  color: white;
-  padding: 5px;
-  border-radius: 30px;
-  box-shadow: 0 7px 12px 0 rgba(0, 0, 0, 0.6);
-  width: fit-content;
-  height: fit-content;
-}
-
-.movie-frame img {
-  padding: 15px;
-}
-
-/* Registration form */
-.movie-search-form {
-  box-shadow: 0 7px 12px 0 rgba(0, 0, 0, 0.6);
-  border-radius: 30px;
-}
+/* 
+ ###############
+   Media Queries
+ ############### 
+ */
 
 /* On screens that are 1553px or less */
 @media screen and (max-width: 1553px) {
