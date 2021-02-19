@@ -16,11 +16,11 @@ if os.path.exists("env.py"):
 
 app = Flask(__name__)
 
-# Blueprint for error_handlers.py
+# Blueprint for error handling
 app.register_blueprint(error_handlers, url_prefix="/error/")
-# Blueprint for the movie database 
+# Blueprint for movie routes 
 app.register_blueprint(movie_search)
-# Get database access from env.py
+# Blueprint for authentication routes
 app.register_blueprint(auth)
 # Get database access from env.py
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")

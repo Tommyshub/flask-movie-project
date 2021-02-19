@@ -19,7 +19,7 @@ __name__, static_folder="static", template_folder="templates")
 tmdb.API_KEY = os.environ.get("TMDB_KEY")
 # Default language for imports 
 tmdb.language = "en"
-# Request session
+# Connection to the database
 tmdb.REQUESTS_SESSION = requests.Session()
 
 search = tmdb.Search()
@@ -85,7 +85,7 @@ def create(movie_id):
 @movie_search.route("/review/<movie_id>", methods=["POST", "GET"])
 def review(movie_id):
     form = ReviewForm()   
-    #  Get current user for review info
+    # Get current user for review info
     user = session["user"].capitalize()
     # Connection to the movie database
     movie = tmdb.Movies(movie_id)
@@ -95,7 +95,7 @@ def review(movie_id):
     movie_id = movie.id
     movie_overview = movie.overview
     poster_path = movie.poster_path
-    # Information about all movies that will be sent to the review page
+    # Information about all movies that will be used for displaying on the review page
     reviews = list(mongo.db.reviews.find({}, {'movie_id': 1, 
     'movie_title': 1, 'username': 1, 'review_text': 1, '_id': 1}))
     
@@ -110,7 +110,8 @@ def review(movie_id):
     if form.review.data and request.method == 'POST':
         mongo.db.reviews.insert_one(review_info)
     
-    return render_template('review.html', form=form, reviews=reviews, movie_id=movie_id, movie_title=movie_title, 
+    return render_template('review.html', form=form, 
+    reviews=reviews, movie_id=movie_id, movie_title=movie_title, 
     movie_overview=movie_overview, poster_path=poster_path, user=user)
 
 
@@ -121,7 +122,7 @@ def edit_review(review_id):
     review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
     
     if request.method == "POST":
-    # Data to send back
+        # Data for updating review
         submit = {
             "movie_id": review['movie_id'],
             "movie_title":  review['movie_title'],

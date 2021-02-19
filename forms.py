@@ -19,7 +19,7 @@ class LoginForm(FlaskForm):
     remember = BooleanField('Remember Me')
    
 
-    
+# Review Form 
 class ReviewForm(FlaskForm):
     movie_id = StringField('Movie ID', validators = [DataRequired(), Length(min=1, max=25)])
     movie_title = StringField('Movie Title', validators = [DataRequired(), Length(min=1, max=25)])
