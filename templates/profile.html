@@ -1,39 +1,36 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <!-- User profile -->
 <div class="row main-wrapper">
-    <!-- flash messages -->
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    {% for message in messages %}
-        <p>{{ message }}</p>
-    {% endfor %}
-    {% endif %}
-    {% endwith %} 
-    <div class="profile">
-        <!-- Display username -->
-        <h3 class="center-align white-text text-darken-4">
-            {{ username }}'s Profile
-        </h3>
-    </div>
-    <br>
-    <h3> Edit or Delete Your Own Reviews </h3>
-    <br>
-    <!-- If the movie reviews variable is not empty -->
-    {% if reviews is not none %}
-    <!-- Get all items in movie_reviews -->
-    {% for item in reviews %}
-    <!-- If the current username exists in movie reviews -->
-    {% if username == item['username'] %}
-    <!-- Display movie the movie title, review text and username -->
-    <div class="white-text container">
-        <h5>{{ item['movie_title'] }}</h5>     
-        <div> {{ item['review_text'] }}</div>
-        <a class="btn-small submit-button" href="{{ url_for('movie_search.edit_review', review_id=item['_id']) }}">Edit</a>
-        <a class="btn-small submit-button" href="{{ url_for('movie_search.delete', review_id=item['_id']) }}">Delete</a> 
-    </div>
-    {% endif %}
-    {% endfor %}  
-    {% endif %}
+  <div class="profile">
+    <!-- Display username -->
+    <h3 class="center-align white-text text-darken-4">
+      {{ username }}'s Profile
+    </h3>
+  </div>
+  <br />
+  <h3>Edit or Delete Your Own Reviews</h3>
+  <br />
+  <!-- If the movie reviews variable is not empty -->
+  {% if reviews is not none %}
+  <!-- Get all items in movie_reviews -->
+  {% for item in reviews %}
+  <!-- If the current username exists in movie reviews -->
+  {% if username == item['username'] %}
+  <!-- Display movie the movie title, review text and username -->
+  <div class="white-text container">
+    <h5>{{ item['movie_title'] }}</h5>
+    <div>{{ item['review_text'] }}</div>
+    <a
+      class="btn-small submit-button"
+      href="{{ url_for('movie_search.edit_review', review_id=item['_id']) }}"
+      >Edit</a
+    >
+    <a
+      class="btn-small submit-button"
+      href="{{ url_for('movie_search.delete', review_id=item['_id']) }}"
+      >Delete</a
+    >
+  </div>
+  {% endif %} {% endfor %} {% endif %}
 </div>
 {% endblock %}

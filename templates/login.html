@@ -1,28 +1,28 @@
-{% from "_formhelpers.html" import render_field %}
-{% extends "base.html" %}
-{% block content %}
+{% from "_formhelpers.html" import render_field %} {% extends "base.html" %} {%
+block content %}
 <!-- Render login field with python -->
 <div class="row main-wrapper">
-    <!-- flash messages -->
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    {% for message in messages %}
-        <p>{{ message }}</p>
-    {% endfor %}
-    {% endif %}
-    {% endwith %} 
-    <div class="row">
-        <!--Login form-->
-        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('auth.login') }}">
-            <div class="card-panel register-login-form">
-                <dl>
-                    {{ render_field(form.username) }}
-                    {{ render_field(form.password) }}
-                </dl>
-            </div>
-            <input type=submit class="col s12 btn-large submit-button" value=Login>
-            <a class="btn-small submit-button" href="{{ url_for('auth.register') }}">Don't Have An Account?</a>
-        </form>
-    </div>
+  <div class="row">
+    <!--Login form-->
+    <form
+      class="col s12 m8 offset-m2"
+      method="POST"
+      action="{{ url_for('auth.login') }}"
+    >
+      <div class="card-panel register-login-form">
+        <dl>
+          {{ render_field(form.username) }} {{ render_field(form.password) }}
+        </dl>
+      </div>
+      <input
+        type="submit"
+        class="col s12 btn-large submit-button"
+        value="Login"
+      />
+      <a class="btn-small submit-button" href="{{ url_for('auth.register') }}"
+        >Don't Have An Account?</a
+      >
+    </form>
+  </div>
 </div>
 {% endblock %}
