@@ -1,32 +1,49 @@
-
 {% from "_formhelpers.html" import render_field %}
+<!-- Extend Base Template -->
 {% extends "base.html" %}
+<!-- Block Content -->
 {% block content %}
-
 <div class="row main-wrapper">
-    <!-- flash messages -->
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    {% for message in messages %}
-        <p>{{ message }}</p>
-    {% endfor %}
-    {% endif %}
-    {% endwith %} 
-    <div class="row">
-        <h4 class="white-text center-align">Wiew reviews or create your own</h4>
-        <div class="black text-white col container push-s1 s10 push-m1 m4 push-l1 l4 push-xl1 xl4 review-frame">
-            <div class="review-title">{{ movie_title }}</div>
-            <img class="review-image" src="https://image.tmdb.org/t/p/w500/{{ poster_path }}" alt="Movie Poster">
-            <div class="col s12 review-overview">{{ movie_overview }}</div>
-        </div>
-        <div class="col container push-s1 s10 push-m1 m6 push-l1 l6 push-xl1 xl6 ">
-            <form method="POST" action="{{ url_for('movie_search.review', movie_id=movie_id) }}">
-                {{ form.csrf_token }}
-                {{ render_field(form.review) }}
-                <input type="submit" class="btn-large submit-button" name="review" value="Submit Review">
-            </form>
-        </div> 
+  <!-- flash messages -->
+  {% with messages = get_flashed_messages() %}
+  <!--.-->
+  {% if messages %}
+  <!--.-->
+  {% for message in messages %}
+  <p>{{ message }}</p>
+  {% endfor %}
+  <!--.-->
+  {% endif %}
+  <!--.-->
+  {% endwith %}
+  <div class="row">
+    <h4 class="white-text center-align">Wiew reviews or create your own</h4>
+    <div
+      class="black text-white col container push-s1 s10 push-m1 m4 push-l1 l4 push-xl1 xl4 review-frame"
+    >
+      <div class="review-title">{{ movie_title }}</div>
+      <img
+        class="review-image"
+        src="https://image.tmdb.org/t/p/w500/{{ poster_path }}"
+        alt="Movie Poster"
+      />
+      <div class="col s12 review-overview">{{ movie_overview }}</div>
     </div>
+    <div class="col container push-s1 s10 push-m1 m6 push-l1 l6 push-xl1 xl6">
+      <form
+        method="POST"
+        action="{{ url_for('movie_search.review', movie_id=movie_id) }}"
+      >
+        {{ form.csrf_token }} {{ render_field(form.review) }}
+        <input
+          type="submit"
+          class="btn-large submit-button"
+          name="review"
+          value="Submit Review"
+        />
+      </form>
+    </div>
+  </div>
 </div>
 <!-- If the movie reviews variable is not empty -->
 {% if reviews is not none %}
@@ -35,19 +52,29 @@
 <!-- If the current movie id exists in movie reviews -->
 {% if movie_id == item['movie_id'] %}
 <!-- Display movie the movie title, review text and username -->
-<div class="row main-wrapper">  
-    <div class="white-text container">
-        <h4>{{ item['movie_title'] }}</h4>     
-        <h5> {{ item['review_text'] }}</h5>
-        <small>posted by: {{ item['username'] }}</small>
-    </div>
-    {% if user == item['username'] %}
-    <a class="btn-small submit-button" href="{{ url_for('movie_search.edit_review', review_id=item['_id']) }}">Edit</a>
-    <a class="btn-small submit-button" href="{{ url_for('movie_search.delete', review_id=item['_id']) }}">Delete</a> 
-    {{ form.csrf_token }}
-    {% endif %} 
+<div class="row main-wrapper">
+  <div class="white-text container">
+    <h4>{{ item['movie_title'] }}</h4>
+    <h5>{{ item['review_text'] }}</h5>
+    <small>posted by: {{ item['username'] }}</small>
+  </div>
+  {% if user == item['username'] %}
+  <a
+    class="btn-small submit-button"
+    href="{{ url_for('movie_search.edit_review', review_id=item['_id']) }}"
+    >Edit</a
+  >
+  <a
+    class="btn-small submit-button"
+    href="{{ url_for('movie_search.delete', review_id=item['_id']) }}"
+    >Delete</a
+  >
+  {{ form.csrf_token }} {% endif %}
 </div>
 {% endif %}
-{% endfor %}  
+<!--.-->
+{% endfor %}
+<!--.-->
 {% endif %}
+<!--.-->
 {% endblock %}
