@@ -185,16 +185,23 @@ body {
   }
 }
 
-/* On screens that are 923px or less */
-@media screen and (max-width: 310px) {
-  .navbar-wrapper a {
-    font-size: 80%;
+/* On screens that are 486px or less */
+@media screen and (max-width: 486px) {
+  .nav-links {
+    font-size: 1rem;
   }
 }
 
-/* On screens that are 923px or less */
-@media screen and (max-width: 257px) {
-  .navbar-wrapper a {
-    font-size: 60%;
+/* On screens that are 392px or less */
+@media screen and (max-width: 392px) {
+  .nav-links {
+    font-size: 0.8rem;
+  }
+}
+
+/* On screens that are 392px or less */
+@media screen and (max-width: 350px) {
+  .nav-links {
+    font-size: 0.6rem;
   }
 }
