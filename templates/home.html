@@ -1,61 +1,98 @@
 {% from "_formhelpers.html" import render_field %}
+<!-- Extend base template -->
 {% extends "base.html" %}
+<!-- Block content -->
 {% block content %}
 <!-- Form for searching for movies -->
 <div class="row s12 main-wrapper">
-    <!-- flash messages -->
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    {% for message in messages %}
-        <p>{{ message }}</p>
-    {% endfor %}
-    {% endif %}
-    {% endwith %} 
-    <div class="row s12">
-        <h4>Search for a movie to review and save to your profile</h4>
-        <div class="container">
-            <!-- Search for new movies -->
-            <form id="search" method="POST" action="{{ url_for('movie_search.home') }}">
-                <div class="card-panel movie-search-form">
-                    {{ form.csrf_token }}
-                    {{ render_field(form.search) }}
-                </div>
-                <input type=submit class="btn-large submit-button" value=search>
-            </form>
-        </div>
+  <!-- flash messages -->
+  {% with messages = get_flashed_messages() %}
+  <!-- . -->
+  {% if messages %}
+  <!-- . -->
+  {% for message in messages %}
+  <!-- . -->
+  <p>{{ message }}</p>
+  {% endfor %}
+  <!-- . -->
+  {% endif %}
+  <!-- . -->
+  {% endwith %}
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m8 l8 xl6 push-xl3 push-l3 push-m2">
+        <h5>Search for a movie to review and save to your profile</h5>
+        <!-- Search for new movies -->
+        <form
+          id="search"
+          method="POST"
+          action="{{ url_for('movie_search.home') }}"
+        >
+          <div class="card-panel movie-search-form">
+            {{ form.csrf_token }} {{ render_field(form.search) }}
+          </div>
+          <input
+            type="submit"
+            class="waves-effect waves-light btn submit-button"
+            value="search"
+          />
+        </form>
+      </div>
     </div>
-    
-    <!-- Creates a movie card for every result in movies -->
-    {% for res in search.results %}
-    <div class="col container s12 m6 l4 xl3">
-        <div class="black container movie-frame">
-            <div class="review-title">{{ res.title }}</div>
-            <img class="review-image" src="https://image.tmdb.org/t/p/w300/{{ res.poster_path }}" alt="Movie Poster">
-            <form id="create" value="create" method="POST" action="{{ url_for('movie_search.create', movie_id=res.id) }}">
-                <!-- Save movie information so that it can be accessed from python -->
-                <input type="hidden" name="movie_id" value="{{res['id']}}">
-                <input type="hidden" name="movie_title" value="{{res['title']}}">
-                <input type="hidden" name="poster_path" value="{{res['poster_path']}}">
-                <input type="hidden" name="movie_overview" value="{{res['overview']}}">
-                {{ form.csrf_token }}
-                {{ render_field(form.create) }}
-            </form>
-        </div>
+  </div>
+  <!-- Creates a movie card for every result in movies -->
+  {% for res in search.results %}
+  <div class="col container s12 m6 l4 xl3">
+    <div class="black container movie-frame">
+      <div class="review-title">{{ res.title }}</div>
+      <img
+        class="review-image"
+        src="https://image.tmdb.org/t/p/w300/{{ res.poster_path }}"
+        alt="Movie Poster"
+      />
+      <form
+        id="create"
+        value="create"
+        method="POST"
+        action="{{ url_for('movie_search.create', movie_id=res.id) }}"
+      >
+        <!-- Save movie information so that it can be accessed from python -->
+        <input type="hidden" name="movie_id" value="{{res['id']}}" />
+        <input type="hidden" name="movie_title" value="{{res['title']}}" />
+        <input
+          type="hidden"
+          name="poster_path"
+          value="{{res['poster_path']}}"
+        />
+        <input
+          type="hidden"
+          name="movie_overview"
+          value="{{res['overview']}}"
+        />
+        {{ form.csrf_token }}
+        <!-- . -->
+        {{ render_field(form.create) }}
+      </form>
     </div>
-    {% endfor %} 
+  </div>
+  {% endfor %}
 </div>
 <!-- Display all movies that exists in the database -->
 <div class="row main-wrapper">
-    <h4>Click on any movie to view reviews or to create your own</h4>
-    {% for movie in home_movies %}
-    <div class="col container s12 m6 l4 xl3">
-      <div class=" black container text-white movie-frame">
-        <div class="review-title center-align">{{ movie.movie_title }}</div>
-        <a href="{{ url_for('movie_search.review', movie_id=movie.movie_id) }}">
-            <img class="review-image" src="https://image.tmdb.org/t/p/w300/{{ movie.poster_path }}" alt="Movie Poster">
-        </a>
-      </div>
+  <h4>Click on any movie to view reviews or to create your own</h4>
+  {% for movie in home_movies %}
+  <div class="col container s12 m6 l4 xl3">
+    <div class="black container text-white movie-frame">
+      <div class="review-title center-align">{{ movie.movie_title }}</div>
+      <a href="{{ url_for('movie_search.review', movie_id=movie.movie_id) }}">
+        <img
+          class="review-image"
+          src="https://image.tmdb.org/t/p/w300/{{ movie.poster_path }}"
+          alt="Movie Poster"
+        />
+      </a>
     </div>
-    {% endfor %}   
+  </div>
+  {% endfor %}
 </div>
 {% endblock %}

@@ -7,9 +7,8 @@
  */
 
 body {
-  background-color: gray;
+  background-color: #303030;
   line-height: 1.9;
-  padding-top: 35px;
 }
 
 /* Div where main content are */
@@ -21,10 +20,7 @@ body {
   margin-top: 45px;
   margin-bottom: 45px;
   height: fit-content;
-  width: 98%;
-  border-radius: 30px;
-  background-color: #283845;
-  box-shadow: 0 7px 12px 0 rgba(0, 0, 0, 0.6);
+  background-color: #303030;
 }
 
 .main-wrapper label {
@@ -39,18 +35,20 @@ body {
 
 .navbar-wrapper {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 98%;
-  border-radius: 30px;
-  background-color: #283845;
-  box-shadow: 0 7px 12px 0 rgba(0, 0, 0, 0.6);
+  background-color: #6c765d;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 
 .navbar-wrapper li {
   text-transform: uppercase;
-  font-family: "Old Standard TT", serif;
-  text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.6);
+  font-size: 4rem;
+  color: #303030;
+}
+
+.nav-links {
+  font-size: 1.4rem;
+  font-weight: 600;
 }
 
 .navbar-wrapper li:hover {
@@ -58,9 +56,9 @@ body {
 }
 
 /* 
- ###############
-   Account
- ############### 
+###############
+  Account
+############### 
  */
 
 .profile {
@@ -76,9 +74,13 @@ body {
 }
 
 .submit-button {
-  margin: 15px;
   box-shadow: 0 7px 12px 0 rgba(0, 0, 0, 0.6);
   border-radius: 30px;
+  background-color: #6c765d;
+}
+
+.submit-button:hover {
+  background-color: #82937e;
 }
 
 /* 
@@ -91,7 +93,7 @@ body {
   border-radius: 30px;
   margin: 25px;
   box-shadow: 0 7px 12px 0 rgba(0, 0, 0, 0.6);
-
+  width: 80%;
   height: fit-content;
 }
 
