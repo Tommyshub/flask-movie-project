@@ -32,11 +32,8 @@ mongo.init_app(app)
 
 
 @app.route("/")
-def base():
-    """
-    Route for the base template
-    """
-    return render_template("base.html")
+def home():
+    return render_template("home.html")
 
 
 if __name__ == "__main__":
