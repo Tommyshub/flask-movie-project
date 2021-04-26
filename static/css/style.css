@@ -158,6 +158,21 @@ body {
   background-color: #f8f8f8;
 }
 
+.message-container {
+  border-radius 30px;
+  position: fixed;
+  top: 45px;
+  right: 10px;
+  z-index: 99999999999;
+  opacity: 0.96;
+}
+
+.toast {
+  background-color: #6c765d;
+  color: #303030;
+  font-weight: 600;
+}
+
 /* 
  ###############
    Media Queries

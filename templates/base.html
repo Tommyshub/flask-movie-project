@@ -80,11 +80,16 @@
       {% if messages %}
       <!--.-->
       {% for message in messages %}
-      <p>{{ message }}</p>
+      <p class="toast">{{ message }}</p>
       {% endfor %}
       <!--.-->
       {% endif %}
-      <!--.-->
+      <!-- Error messages -->
+      {% if error %}
+      <p class="error red"><strong>Error:</strong> {{ error }}</p>
+      <!-- . -->
+      {% endif %}
+      <!-- . -->
       {% endwith %}
     </div>
     <!-- Main content -->
@@ -97,5 +102,13 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Script for closing toast messages -->
+    <script>
+      setTimeout(function () {
+        if ($(".toast").length > 0) {
+          $(".toast").remove();
+        }
+      }, 4000);
+    </script>
   </body>
 </html>
