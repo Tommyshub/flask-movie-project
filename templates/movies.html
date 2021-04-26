@@ -26,7 +26,7 @@
         <form
           id="search"
           method="POST"
-          action="{{ url_for('movie_search.home') }}"
+          action="{{ url_for('movie_search.movies') }}"
         >
           <div class="card-panel movie-search-form">
             {{ form.csrf_token }} {{ render_field(form.search) }}
@@ -79,7 +79,6 @@
 </div>
 <!-- Display all movies that exists in the database -->
 <div class="row main-wrapper">
-  <h4>Click on any movie to view reviews or to create your own</h4>
   {% for movie in home_movies %}
   <div class="col container s12 m6 l4 xl3">
     <div class="black container text-white movie-frame">

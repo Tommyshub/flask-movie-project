@@ -31,8 +31,10 @@
                 <!-- If statement so that different pages are not displayed at the same time  -->
                 {% if session.user %}
                 <li>
-                  <a class="nav-links" href="{{ url_for('movie_search.home') }}"
-                    >Home</a
+                  <a
+                    class="nav-links"
+                    href="{{ url_for('movie_search.movies') }}"
+                    >Movies</a
                   >
                 </li>
                 <li>
