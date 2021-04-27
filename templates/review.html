@@ -57,7 +57,9 @@
     href="{{ url_for('movie_search.delete', review_id=item['_id']) }}"
     >Delete</a
   >
-  {{ form.csrf_token }} {% endif %}
+  {{ form.csrf_token }}
+  <!--.-->
+  {% endif %}
 </div>
 {% endif %}
 <!--.-->

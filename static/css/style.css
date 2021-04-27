@@ -43,13 +43,13 @@ body {
 .navbar-wrapper li {
   text-transform: uppercase;
   font-size: 4rem;
-  color: #303030;
+  color: #161a1d;
 }
 
 .nav-links {
   font-size: 1.4rem;
   font-weight: 700;
-  color: #efefef;
+  color: #161a1d;
 }
 
 .navbar-wrapper li:hover {
@@ -73,10 +73,16 @@ body {
   box-shadow: 0 7px 12px 0 rgba(0, 0, 0, 0.6);
   border-radius: 30px;
   background-color: #437085;
+  font-weight: 800;
 }
 
 .submit-button:hover {
   background-color: #61a3c2;
+}  
+
+.submit-button input {
+  font-weight: 700;
+  color: #161a1d;
 }
 
 /* 
@@ -168,8 +174,9 @@ body {
 }
 
 .toast {
-  background-color: #6c765d;
-  color: #303030;
+  background-color: #437085;
+  color: #161a1d;
+  border-radius: 30px;
   font-weight: 600;
 }
 
