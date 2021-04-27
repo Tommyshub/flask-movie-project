@@ -29,6 +29,8 @@
   </div>
   <!-- Creates a movie card for every result in movies -->
   {% for res in search.results %}
+  <!-- If the poster path is not empty -->
+  {% if res.poster_path is not none %}
   <div class="col container s12 m6 l4 xl3">
     <div class="black container movie-frame">
       <div class="review-title">{{ res.title }}</div>
@@ -62,6 +64,8 @@
       </form>
     </div>
   </div>
+  {% endif %}
+  <!-- . -->
   {% endfor %}
 </div>
 <!-- Display all movies that exists in the database -->
