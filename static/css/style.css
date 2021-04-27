@@ -164,6 +164,12 @@ body {
   background-color: #f8f8f8;
 }
 
+/* 
+###############
+  Toasts
+############### 
+ */
+
 .message-container {
   border-radius 30px;
   position: fixed;
@@ -179,12 +185,21 @@ body {
   border-radius: 30px;
   font-weight: 600;
 }
+/* 
+###############
+  Home
+############### 
+*/
+
+.home-text {
+  font-size: 18px;
+}
 
 /* 
- ###############
-   Media Queries
- ############### 
- */
+###############
+  Media Queries
+############### 
+*/
 
 /* On screens that are 1553px or less */
 @media screen and (max-width: 1553px) {

@@ -3,6 +3,17 @@
 <!-- Block content -->
 {% block content %}
 <div class="row main-wrapper">
-  <div class="home">Test</div>
+  <div class="home">
+    <h4>Welcome to the Movie Review Site</h4>
+    <p class="home-text">
+      If you don't already have an account you can
+      <a href="{{ url_for('auth.register') }}">create one here</a>
+      or <a href="{{ url_for('auth.login') }}">login here</a> if you have one.
+    </p>
+    <img
+      src="{{ url_for('static', filename='img/it.png') }}"
+      alt="Movie Review Image"
+    />
+  </div>
 </div>
 {% endblock %}
