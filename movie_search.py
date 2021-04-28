@@ -49,6 +49,7 @@ def movies():
         else:
             # Display results for movie
             flash(f"Display results for {string}", "success")
+
     return render_template('movies.html', search=search,
                            home_movies=list(home_movies), form=form)
 
@@ -83,7 +84,7 @@ def create(movie_id):
         else:
             flash("Created Movie!", "success")
             # Insert movie information
-            mongo.db.reviews.insert_one(movie_info)
+            mongo.db.movies.insert_one(movie_info)
     return render_template('review.html', form=form,
                            movie_id=movie_id, movie_title=movie_title,
                            movie_overview=movie_overview,
@@ -118,7 +119,6 @@ def review(movie_id):
 
     if form.review.data and request.method == 'POST':
         mongo.db.reviews.insert_one(review_info)
-
     return render_template('review.html', form=form,
                            reviews=reviews, movie_id=movie_id,
                            movie_title=movie_title,
@@ -136,11 +136,12 @@ def edit_review(review_id):
             "movie_id": review['movie_id'],
             "movie_title":  review['movie_title'],
             "username": review['username'],
-            "review_text": request.form.get("review")
+            "review_text": request.form.get("edit-review")
         }
         # Update objectid with submitted data
         mongo.db.reviews.update({"_id": ObjectId(review_id)}, submit)
         flash("Review updated!")
+        return redirect(url_for("auth.profile", username=session["user"]))
     return render_template("edit_review.html", review=review)
 
 
