@@ -180,25 +180,39 @@ body {
 
 /* 
 ###############
-  Toasts
+  Flashed messages
 ############### 
 */
 
 .message-container {
   border-radius 30px;
   position: fixed;
-  top: 45px;
+  bottom: 45px;
   right: 10px;
   z-index: 99999999999;
   opacity: 0.96;
 }
 
 .toast {
-  background-color: #437085;
-  color: #161a1d;
   border-radius: 30px;
   font-weight: 600;
 }
+
+.error {
+  background-color: #cc2936;
+  color: #161a1d;
+}
+
+.success {
+  background-color: #52b788;
+  color: white;
+}
+
+.info {
+  background-color: #437085;
+  color: #161a1d;
+}
+
 /* 
 ###############
   Home

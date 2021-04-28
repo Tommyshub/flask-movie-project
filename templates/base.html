@@ -75,21 +75,16 @@
     </header>
     <div class="message-container">
       <!-- flash messages -->
-      {% with messages = get_flashed_messages() %}
+      {% with messages = get_flashed_messages(with_categories=true) %}
       <!--.-->
       {% if messages %}
       <!--.-->
-      {% for message in messages %}
-      <p class="toast">{{ message }}</p>
+      {% for category, message in messages %}
+      <p class="toast {{category}}">{{ message }}</p>
       {% endfor %}
       <!--.-->
       {% endif %}
-      <!-- Error messages -->
-      {% if error %}
-      <p class="error red"><strong>Error:</strong> {{ error }}</p>
-      <!-- . -->
-      {% endif %}
-      <!-- . -->
+      <!--.-->
       {% endwith %}
     </div>
     <!-- Main content -->

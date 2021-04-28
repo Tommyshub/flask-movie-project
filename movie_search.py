@@ -45,10 +45,10 @@ def movies():
         movies = search.movie(query=string)
         if movies['total_results'] == 0:
             # Message that movie cannot be not found
-            flash(f"No results found for {string}")
+            flash(f"No results found for {string}", "error")
         else:
             # Display results for movie
-            flash(f"Displaying results for {string}")
+            flash(f"Display results for {string}", "success")
     return render_template('movies.html', search=search,
                            home_movies=list(home_movies), form=form)
 
