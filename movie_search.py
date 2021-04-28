@@ -119,6 +119,8 @@ def review(movie_id):
 
     if form.review.data and request.method == 'POST':
         mongo.db.reviews.insert_one(review_info)
+        flash("Successfully posted your review", "success")
+        return redirect(url_for("movie_search.review", movie_id=movie_id))
     return render_template('review.html', form=form,
                            reviews=reviews, movie_id=movie_id,
                            movie_title=movie_title,
@@ -140,7 +142,7 @@ def edit_review(review_id):
         }
         # Update objectid with submitted data
         mongo.db.reviews.update({"_id": ObjectId(review_id)}, submit)
-        flash("Review updated!")
+        flash("Review updated!", "success")
         return redirect(url_for("auth.profile", username=session["user"]))
     return render_template("edit_review.html", review=review)
 
