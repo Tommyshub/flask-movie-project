@@ -78,10 +78,10 @@ def create(movie_id):
     if form.create.data and request.method == 'POST':
         # If the movie id exists less than 1 one time
         if existing_movie >= 1:
-            flash("Redirected to existing review!")
+            flash("Redirected to existing review!", "info")
         # If the movie id does not exist in the database
         else:
-            flash("Created Movie!")
+            flash("Created Movie!", "success")
             # Insert movie information
             mongo.db.reviews.insert_one(movie_info)
     return render_template('review.html', form=form,

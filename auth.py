@@ -2,7 +2,7 @@ import os
 import json
 from flask import (
     Flask, flash, render_template,
-    redirect, request, session, 
+    redirect, request, session,
     url_for, abort, Blueprint, Response,)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -12,7 +12,8 @@ from database import mongo
 
 
 # Blueprint for this file
-auth = Blueprint("auth", __name__, static_folder="static", template_folder="templates")
+auth = Blueprint("auth", __name__, static_folder="static",
+                 template_folder="templates")
 
 
 @auth.route("/register", methods=["POST", "GET"])
@@ -28,9 +29,9 @@ def register():
             {"username": request.form.get("username").lower()})
         # Warn if the user already exists
         if existing_user:
-            flash("Username already exists")
+            flash("Username already exists", "error")
             return redirect(url_for("register"))
-        # What to send to database 
+        # What to send to database
         register = {
             "email": request.form.get("email").lower(),
             "username": request.form.get("username").lower(),
@@ -39,9 +40,9 @@ def register():
         mongo.db.users.insert_one(register)
         # Put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
-        flash("Registration Successful!")
+        flash("Registration Successful!", "success")
         return redirect(url_for("auth.profile", username=session["user"]))
-    
+
     return render_template("register.html", title="register", form=form)
 
 
@@ -64,19 +65,18 @@ def login():
             # Check if the hashed password match
             if check_password_hash(
                     existing_user["password"], request.form.get("password")):
-                        session["user"] = request.form.get("username").lower()
-                        flash("Welcome, {}".format(
-                            request.form.get("username")))
-                        return redirect(url_for(
-                            "auth.profile", username=session["user"]))
-            
+                session["user"] = request.form.get("username").lower()
+                flash("Welcome, {}".format(
+                    request.form.get("username")), "success")
+                return redirect(url_for(
+                    "auth.profile", username=session["user"]))
+
             else:
                 # Invalid username or password
-                flash("Incorrect Username and/or Password")
+                flash("Incorrect Username and/or Password", "error")
                 return redirect(url_for("auth.login"))
 
     return render_template("login.html", title="login", form=form)
-
 
 
 @auth.route("/profile/<username>", methods=["GET", "POST"])
@@ -85,11 +85,12 @@ def profile(username):
     User Profile where the user can edit or delete the users own reviews.
     """
     # Fetch all reviews
-    reviews = mongo.db.reviews.find({}, {'movie_id': 1, 'movie_title': 1, 'username': 1, 'review_text': 1, '_id': 1})
-    if session.get('user'): # check if the user is logged in
+    reviews = mongo.db.reviews.find(
+        {}, {'movie_id': 1, 'movie_title': 1, 'username': 1, 'review_text': 1, '_id': 1})
+    if session.get('user'):  # check if the user is logged in
         # Find username in the database
         username = mongo.db.users.find_one(
-            {"username":session["user"]})["username"].capitalize()
+            {"username": session["user"]})["username"].capitalize()
         return render_template("profile.html", reviews=list(reviews), username=username, title="profile")
     return redirect(url_for("auth.login"))
 
@@ -100,6 +101,6 @@ def logout():
     User Logout by removing the user from the user session
     """
     # remove user from session cookie
-    flash("You have been logged out")
+    flash("You have been logged out", "success")
     session.pop("user", None)
     return redirect(url_for("auth.login"))
