@@ -33,6 +33,9 @@ def display_movies():
     Get all movies from the database in order to display them in the template.
     """
     form = ReviewForm()
+    # Workaround to pop movie results from session on page reload
+    if session.get('results') is not None:
+        session.pop('results', None)
     display_movies = mongo.db.movies.find({}, {'movie_id': 1,
                                                'movie_title': 1,
                                                'movie_overview': 1,
@@ -95,7 +98,6 @@ def create(movie_id):
         "movie_overview": movie_overview,
         "poster_path": poster_path
     }
-
     if form.create.data and request.method == 'POST':
         # If the movie id exists less than 1 one time
         if existing_movie >= 1:
