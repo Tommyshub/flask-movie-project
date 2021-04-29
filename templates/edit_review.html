@@ -1,23 +1,47 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <div class="row main-wrapper">
-    <div class="row">
-        <h4>Edit Your Review</h4>
-        <form method="POST" action="{{ url_for('movie_search.edit_review', review_id=review._id) }}">
-            <!--Review text -->
-            <div>
-                <label for="edit-review" class="form-label"></label>
-                <textarea class="form-control validate" minlength="5" maxlength="400" name="edit-review"
-                    id="edit-review" rows="3" required>{{ review.review_text }}</textarea>
-            </div>
-            <!--Submit button-->
-            <div>
-                <!--Submit edit-->
-                <button type="submit" class="btn-small submit-button" data-aos="fade-up" data-aos-delay="100">Complete</button>
-                <!--Cancel edit-->
-                <a href="javascript:history.back()" class="btn-small submit-button" data-aos="fade-up" data-aos-delay="200">Cancel</a>
-            </div>            
-        </form>
-    </div>
+  <div class="row">
+    <h4>Edit Your Review</h4>
+    <form
+      method="POST"
+      action="{{ url_for('movies.edit_review', review_id=review._id) }}"
+    >
+      <!--Review text -->
+      <div>
+        <label for="edit-review" class="form-label"></label>
+        <textarea
+          class="form-control validate"
+          minlength="5"
+          maxlength="400"
+          name="edit-review"
+          id="edit-review"
+          rows="3"
+          required
+        >
+{{ review.review_text }}</textarea
+        >
+      </div>
+      <!--Submit button-->
+      <div>
+        <!--Submit edit-->
+        <button
+          type="submit"
+          class="btn-small submit-button"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          Complete
+        </button>
+        <!--Cancel edit-->
+        <a
+          href="javascript:history.back()"
+          class="btn-small submit-button"
+          data-aos="fade-up"
+          data-aos-delay="200"
+          >Cancel</a
+        >
+      </div>
+    </form>
+  </div>
 </div>
 {% endblock %}

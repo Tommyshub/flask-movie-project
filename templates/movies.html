@@ -13,7 +13,7 @@
         <form
           id="search"
           method="POST"
-          action="{{ url_for('movie_search.movies') }}"
+          action="{{ url_for('movies.search_movies') }}"
         >
           <div class="card-panel movie-search-form">
             {{ form.csrf_token }} {{ render_field(form.search) }}
@@ -42,7 +42,7 @@
             id="create"
             value="create"
             method="POST"
-            action="{{ url_for('movie_search.create', movie_id=res.id) }}"
+            action="{{ url_for('movies.create', movie_id=res.id) }}"
           >
             <!-- Save movie information so that it can be accessed from python -->
             <input type="hidden" name="movie_id" value="{{res['id']}}" />
@@ -84,7 +84,7 @@
   <div class="col container s12 m6 l4 xl3">
     <div class="black container text-white movie-frame">
       <div class="review-title center-align">{{ movie.movie_title }}</div>
-      <a href="{{ url_for('movie_search.review', movie_id=movie.movie_id) }}">
+      <a href="{{ url_for('movies.review', movie_id=movie.movie_id) }}">
         <img
           class="review-image"
           src="https://image.tmdb.org/t/p/w300/{{ movie.poster_path }}"

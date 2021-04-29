@@ -14,9 +14,9 @@ if os.path.exists("env.py"):
     import env
 
 # Blueprint for this file
-movie_search = Blueprint("movie_search",
-                         __name__, static_folder="static",
-                         template_folder="templates")
+movies = Blueprint("movies",
+                   __name__, static_folder="static",
+                   template_folder="templates")
 # Get api key from env.py
 tmdb.API_KEY = os.environ.get("TMDB_KEY")
 # Default language for imports
@@ -27,8 +27,8 @@ tmdb.REQUESTS_SESSION = requests.Session()
 search = tmdb.Search()
 
 
-@movie_search.route("/movies", methods=["POST", "GET"])
-def movies():
+@movies.route("/movies", methods=["POST", "GET"])
+def search_movies():
     """
     Fetch all information about all movies from the movies database 
     in order to display it in the html.
@@ -47,7 +47,7 @@ def movies():
         string = request.form["search"]
         # Search for movie with user input from html form
         movies = search.movie(query=string)
-        # Put the results in the session
+        # Put movie search results in session
         session['results'] = movies['results']
         if movies['total_results'] == 0:
             # Clear search field on submit
@@ -57,13 +57,13 @@ def movies():
         else:
             # Clear search field on submit
             form.search.data = ""
-            # Flash message that results are displayed for movie
+            # Message that results are displayed for movie
             flash(f"Display results for {string}", "success")
     return render_template('movies.html',
                            home_movies=list(home_movies), form=form)
 
 
-@movie_search.route("/create/<movie_id>", methods=["POST", "GET"])
+@movies.route("/create/<movie_id>", methods=["POST", "GET"])
 def create(movie_id):
     form = ReviewForm()
     # Connection to the movie database
@@ -100,7 +100,7 @@ def create(movie_id):
                            poster_path=poster_path)
 
 
-@movie_search.route("/review/<movie_id>", methods=["POST", "GET"])
+@movies.route("/review/<movie_id>", methods=["POST", "GET"])
 def review(movie_id):
     form = ReviewForm()
     # Get current user for review info
@@ -129,7 +129,7 @@ def review(movie_id):
     if form.review.data and request.method == 'POST':
         mongo.db.reviews.insert_one(review_info)
         flash("Successfully posted your review", "success")
-        return redirect(url_for("movie_search.review", movie_id=movie_id))
+        return redirect(url_for("movies.review", movie_id=movie_id))
     return render_template('review.html', form=form,
                            reviews=reviews, movie_id=movie_id,
                            movie_title=movie_title,
@@ -137,7 +137,7 @@ def review(movie_id):
                            poster_path=poster_path, user=user)
 
 
-@movie_search.route("/edit_review/<review_id>", methods=["GET", "POST"])
+@movies.route("/edit_review/<review_id>", methods=["GET", "POST"])
 def edit_review(review_id):
     # Fetch ObjectID info from database and pass it to submit
     review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
@@ -156,7 +156,7 @@ def edit_review(review_id):
     return render_template("edit_review.html", review=review)
 
 
-@movie_search.route("/delete_review/<review_id>")
+@movies.route("/delete_review/<review_id>")
 def delete(review_id):
     # Remove object connected to this objectid (review id)
     mongo.db.reviews.remove({"_id": ObjectId(review_id)})

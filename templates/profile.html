@@ -20,12 +20,12 @@
     <div>{{ item['review_text'] }}</div>
     <a
       class="btn-small submit-button"
-      href="{{ url_for('movie_search.edit_review', review_id=item['_id']) }}"
+      href="{{ url_for('movies.edit_review', review_id=item['_id']) }}"
       >Edit</a
     >
     <a
       class="btn-small submit-button"
-      href="{{ url_for('movie_search.delete', review_id=item['_id']) }}"
+      href="{{ url_for('movies.delete', review_id=item['_id']) }}"
       >Delete</a
     >
   </div>

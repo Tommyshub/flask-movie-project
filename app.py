@@ -9,7 +9,7 @@ from flask_pymongo import PyMongo
 
 from bson.objectid import ObjectId
 from error_handlers import error_handlers
-from movie_search import movie_search
+from movies import movies
 from auth import auth
 from database import mongo
 from flask_session import Session
@@ -23,7 +23,7 @@ app = Flask(__name__)
 # Blueprint for error handling
 app.register_blueprint(error_handlers, url_prefix="/error/")
 # Blueprint for movie routes
-app.register_blueprint(movie_search)
+app.register_blueprint(movies)
 # Blueprint for authentication routes
 app.register_blueprint(auth)
 # Get database access from env.py
