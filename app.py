@@ -11,6 +11,9 @@ from error_handlers import error_handlers
 from movie_search import movie_search
 from auth import auth
 from database import mongo
+from flask_session import Session
+
+
 if os.path.exists("env.py"):
     import env
 
@@ -25,10 +28,14 @@ app.register_blueprint(auth)
 # Get database access from env.py
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+# Set session type to filesystem
+app.config['SESSION_TYPE'] = 'filesystem'
 # Get secret key from env.py
 app.secret_key = os.environ.get("SECRET_KEY")
 # Initiate PyMongo
 mongo.init_app(app)
+# Initiate Flask Session (server-side)
+sess = Session(app)
 
 
 @app.route("/")
