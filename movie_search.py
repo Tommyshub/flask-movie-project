@@ -50,10 +50,14 @@ def movies():
         # Put the results in the session
         session['results'] = movies['results']
         if movies['total_results'] == 0:
+            # Clear search field on submit
+            form.search.data = ""
             # Message that movie cannot be not found
             flash(f"No results found for {string}", "error")
         else:
-            # Display results for movie
+            # Clear search field on submit
+            form.search.data = ""
+            # Flash message that results are displayed for movie
             flash(f"Display results for {string}", "success")
     return render_template('movies.html',
                            home_movies=list(home_movies), form=form)
