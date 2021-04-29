@@ -27,17 +27,26 @@ tmdb.REQUESTS_SESSION = requests.Session()
 search = tmdb.Search()
 
 
+@movies.route("/movies")
+def display_movies():
+    """
+    Get all movies from the database in order to display them in the template.
+    """
+    form = ReviewForm()
+    display_movies = mongo.db.movies.find({}, {'movie_id': 1,
+                                               'movie_title': 1,
+                                               'movie_overview': 1,
+                                               'poster_path': 1,
+                                               '_id': 0})
+    return render_template('movies.html',
+                           display_movies=list(display_movies), form=form)
+
+
 @movies.route("/movies", methods=["POST", "GET"])
 def search_movies():
     """
-    Fetch all information about all movies from the movies database 
-    in order to display it in the html.
+    Search for movies in the movie database 
     """
-    home_movies = mongo.db.movies.find({}, {'movie_id': 1,
-                                            'movie_title': 1,
-                                            'movie_overview': 1,
-                                            'poster_path': 1,
-                                            '_id': 0})
     form = ReviewForm()
     # Workaround to pop movie results from session on page reload
     if session.get('results') is not None:
@@ -59,12 +68,14 @@ def search_movies():
             form.search.data = ""
             # Message that results are displayed for movie
             flash(f"Display results for {string}", "success")
-    return render_template('movies.html',
-                           home_movies=list(home_movies), form=form)
+    return render_template('movies.html', form=form)
 
 
 @movies.route("/create/<movie_id>", methods=["POST", "GET"])
 def create(movie_id):
+    """
+    Let the users create reviews from the search results
+    """
     form = ReviewForm()
     # Connection to the movie database
     movie = tmdb.Movies(movie_id)
