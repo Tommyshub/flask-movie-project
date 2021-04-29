@@ -134,6 +134,14 @@ body {
 ############### 
 */
 
+.create-button label {
+  visibility: hidden;
+}
+
+.create-button {
+  padding-right: 40px;
+}
+
 .review-frame {
   color: white;
   margin-top: 45px;
