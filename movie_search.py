@@ -36,21 +36,26 @@ def movies():
     home_movies = mongo.db.movies.find({}, {'movie_id': 1,
                                             'movie_title': 1,
                                             'movie_overview': 1,
-                                            'poster_path': 1, '_id': 0})
+                                            'poster_path': 1,
+                                            '_id': 0})
     form = ReviewForm()
+    # Workaround to pop movie results from session on page reload
+    if session.get('results') is not None:
+        session.pop('results', None)
     if form.search.data and request.method == 'POST':
         # Setting user input to string
         string = request.form["search"]
         # Search for movie with user input from html form
         movies = search.movie(query=string)
+        # Put the results in the session
+        session['results'] = movies['results']
         if movies['total_results'] == 0:
             # Message that movie cannot be not found
             flash(f"No results found for {string}", "error")
         else:
             # Display results for movie
             flash(f"Display results for {string}", "success")
-
-    return render_template('movies.html', search=search,
+    return render_template('movies.html',
                            home_movies=list(home_movies), form=form)
 
 
@@ -130,10 +135,10 @@ def review(movie_id):
 
 @movie_search.route("/edit_review/<review_id>", methods=["GET", "POST"])
 def edit_review(review_id):
-    # Fetch Object ID for editing
+    # Fetch ObjectID info from database and pass it to submit
     review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
     if request.method == "POST":
-        # Data for updating review
+        # Get info from database and form for editing
         submit = {
             "movie_id": review['movie_id'],
             "movie_title":  review['movie_title'],
@@ -151,5 +156,5 @@ def edit_review(review_id):
 def delete(review_id):
     # Remove object connected to this objectid (review id)
     mongo.db.reviews.remove({"_id": ObjectId(review_id)})
-    flash("Review succesfully deleted!")
+    flash("Review succesfully deleted!", "success")
     return redirect(url_for("auth.profile", username=session["user"]))
