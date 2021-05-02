@@ -129,35 +129,101 @@ I used figma to create my wireframes and while most things are exactly as I show
 
 ## Testing
 
+### Am I Respsonsive?
+
+I used the Am I Responsive tool to check if my page is responsive. You can see the screenshot from that test below.
+
+![Am I Respsonsive?](https://github.com/Tommyshub/flask-movie-project/blob/main/static/assets/responsive/responsive.png)
+
+I also tested the page in both the Google Chrome and Firefox dev tools, checking different screen sizes.
+
+I did notice that my navbar was not perfect on large screens so I fixed this by changing the push values from the materialize css framework.
+
+### Forms
+
+I had some serious issues with all of my forms not submitting and updating correctly. After doing some research on the issue I found that the forms should be redirected instead of rendering the template again in order for them to work correctly.
+
+Changing this fixed the problems with all forms except for the search form.
+
+The issue with my search form was quite a bit more complicated and the issue was related to either the api itself or the wrapper for the movie database api.
+
+The problems was that I could not get the search results to clear when I accessed them directly from the api wrapper.
+
+When trying to fix this I assigned the search results to a session instead, which worked okay but I realized that this limited the size of the response from the api and many search results did not work.
+
+Because of this I decided to use server side sessions and at first I thought that I could use local storage for this, but this does not work with Heroku so I tried connecting it to mongodb and using the same database for my sessions.
+
+This did not work good because the search results was slow and I experience many issues with the connection to mongodb. I
+
+Instead I decided to use redis supplied by Heroku and this worked pretty good except for some random issues with the connection that I will explain how I solved below.
+
+The problem was still not solved at this point, but I knew that I could fix it by simply popping search results cookie from the session when someone enters the movies page.
+
+I also needed to set the actaul search fields to an empty string after submitting the form, which I did.
+
+The old search results will still be the if the user just tries to reload the page, but it works as expected when leaving the page and coming back or when searching for a new movie.
+
+If i tried to end the function on a redirect to fix this last issue it would trigger my workaround for popping the cookie and no search results would be displayed. So I decided that this is the best solution.
+
+### Redis connection issues
+
+I noticed that I was having some random connection issues with my redis connection. I googled the issue and found out that this was do to a bug that have been fixed by an update but I needed to add a health check interval option to my connection string.
+
+I have not experienced the problem again after updating the connection string.
+
+### Flask messages
+
+I could not put my toast messages in the base template because of how my page was designed before and I thought that I had fixed this so they worked anyway but I noticed that they didn't after coming back to the project.
+
+I was able to move all these messages to the base template because I had already decided to redesign the page.
+
+After doing this I also gave them a new look with css classes for error, warning and info and I also wrote a function that closes them after 4000ms.
+
+### Message if no movies are found
+
+After fixing the issues with flask messages I added a message that notifies the user if no results can be found for their search query.
+
+### Navigtion and layout issues
+
+A big part of the reason that I decided to change my design was because of the issues with the navigation and layout of my page. I
+
+My intent was to use the page that is now movies as my home view, but for some reason I used the base template.
+
+To fix this and make it better I created a new home template that is rendered when entering the page and I renamed the old one to movies.
+
+### Python formatting
+
+I used the cornflakes linting extension for visual studio code in order to format my code according to the pep8 rules and I thought that this worked great but noticed after getting feedback that this does not work properly in some few cases. For example when some lines are too long.
+
+I used [this](http://pep8online.com/) online validator on top of this to make sure that every line of code is correctly formatted and I also.
+
+I had to manually fix a few lines that were too long and some other issues with the formatting but it should all be fixed now.
+
+### HTML and jinja2 formatting
+
+I have been using the prettier extension for visual studio to format my html but it did not work properly before for some reason.
+
+I have changed computer since first starting this project and now it formats the code correctly, so I am gussing that I had some problems with the extension before.
+
+I had to add comments in between the jinja2 code because the prettier extension does not handle that type of code.
+
+### HTML validation
+
+I tried using online html validators to check my code but I could not find any that handled jinja2 and flask so I got a lot of errors because of that code. But as far as a can tell there was no issues with the actual html after coming back and fixing the old issues.
+
 ### Bandit -a tool designed to find common security issues in Python code.
 
 [You can find out more about bandit here](https://github.com/PyCQA/bandit)
 
 I used this automated tool to check if there were any security issues in my code. It reported on medium security issue and that is that I am binding to 0.0.0.0 in env.py and this can potentially open up a service to traffic on unintended interfaces.
 
-This should be fine when deployed to Heroku.
+This should be fine when deployed to Heroku and I did not change this setting.
 
 ### PyTest
 
 [You can find out more about PyTest here](https://flask.palletsprojects.com/en/1.1.x/testing/)
 
 I intented to to this as a last step but I did not have time for this unfortunately.
-
-### Forms, validation, responsiveness etc.
-
-As per usual I ran my code through online validators, code formatters and I also manually tested every part of my page to see if there were any issues that I could fix before submitting the code.
-
-I have done manual tests on all the forms and search fields and I have addressed most of the issues that came up.
-
-I had an issue with forms not clearing after submit but this should be fixed now.
-
-The users could add endless of the same movie but I have fixed this with a conditional statement.
-
-The same problem occurs when the user submits reviews but I have sadly not yet fixed this, because I ran out of time.
-
-I manually test the responsiveness and fixed the issues that I noticed with media queries. I also set images from the movie database to less than 100% to get it to work good.
-
-I also noticed that the search results when searching for movies do not clear as they should, but sadly this is also something I didn't have time to fix.
 
 ## Deployment
 
