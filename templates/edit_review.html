@@ -1,4 +1,7 @@
-{% extends "base.html" %} {% block content %}
+<!-- Extend base template -->
+{% extends "base.html" %}
+<!-- Block content -->
+{% block content %}
 <div class="row main-wrapper">
   <div class="row">
     <h4>Edit Your Review</h4>
@@ -18,8 +21,8 @@
           rows="3"
           required
         >
-{{ review.review_text }}</textarea
-        >
+        {{ review.review_text }}
+        </textarea>
       </div>
       <!--Submit button-->
       <div>

@@ -1,12 +1,8 @@
-{% extends "base.html" %} {% block content %}
+<!-- Extent base template -->
+{% extends "base.html" %}
+<!-- Block content -->
+{% block content %}
 <div class="row col s12 main-wrapper">
-  <!-- 404 Not found error page -->
-  <!-- flash messages -->
-  {% with messages = get_flashed_messages() %} {% if messages %} {% for message
-  in messages %}
-  <p>{{ message }}</p>
-  {% endfor %} {% endif %} {% endwith %} {% block title %} Attribute Error! {%
-  endblock %}
   <div class="row">
     <div class="col s12 m8 offset-m2">
       <div class="card-panel profile">

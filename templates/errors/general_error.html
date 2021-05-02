@@ -1,13 +1,16 @@
-{% extends "base.html" %} {% block title %} Not Implemented! {% endblock %} {%
-block content %}
+<!-- Extent base template -->
+{% extends "base.html" %}
+<!-- Error title -->
+{% block title %} Error message! {% endblock %}
+<!-- Block content -->
+{% block content %}
 <div class="row">
   <div class="container">
     <div class="profile">
       <div class="center-align white-text text-darken-4">
         <h3>
-          {{ error_message }}<a href="{{ url_for('movie_search.movies') }}"
-            >Click here</a
-          >
+          {{ error_message }}
+          <a href="{{ url_for('movie_search.movies') }}">Click here</a>
           to return to the homepage.
         </h3>
       </div>

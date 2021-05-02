@@ -1,5 +1,8 @@
-{% from "_formhelpers.html" import render_field %} {% extends "base.html" %} {%
-block content %}
+{% from "_formhelpers.html" import render_field %}
+<!-- Extend base template -->
+{% extends "base.html" %}
+<!-- Block content -->
+{% block content %}
 <!-- Render registration field with python-->
 <div class="row main-wrapper">
   <div class="row">
@@ -11,8 +14,14 @@ block content %}
     >
       <div class="card-panel register-login-form">
         <dl>
-          {{ render_field(form.username) }} {{ render_field(form.email) }} {{
-          render_field(form.password) }} {{ render_field(form.confirm) }}
+          <!-- Render username field -->
+          {{ render_field(form.username) }}
+          <!-- Render email field -->
+          {{ render_field(form.email) }}
+          <!-- Render password field -->
+          {{ render_field(form.password) }}
+          <!-- Render confirm password field -->
+          {{ render_field(form.confirm) }}
         </dl>
       </div>
       <input
