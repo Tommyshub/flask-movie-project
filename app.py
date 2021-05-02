@@ -33,7 +33,8 @@ app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.config['SESSION_TYPE'] = 'redis'
 app.config['SESSION_PERMANENT'] = False
 app.config['SESSION_USE_SIGNER'] = True
-app.config['SESSION_REDIS'] = redis.from_url(os.environ.get("REDIS_URL"))
+app.config['SESSION_REDIS'] = redis.from_url(
+    os.environ.get("REDIS_URL"), health_check_interval=30)
 # Get secret key from env.py
 app.secret_key = os.environ.get("SECRET_KEY")
 # Initiate PyMongo
