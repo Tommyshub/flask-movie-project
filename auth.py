@@ -86,12 +86,16 @@ def profile(username):
     """
     # Fetch all reviews
     reviews = mongo.db.reviews.find(
-        {}, {'movie_id': 1, 'movie_title': 1, 'username': 1, 'review_text': 1, '_id': 1})
+        {}, {'movie_id': 1, 'movie_title': 1,
+             'username': 1, 'review_text': 1,
+             '_id': 1})
     if session.get('user'):  # check if the user is logged in
         # Find username in the database
         username = mongo.db.users.find_one(
             {"username": session["user"]})["username"].capitalize()
-        return render_template("profile.html", reviews=list(reviews), username=username, title="profile")
+        return render_template("profile.html",
+                               reviews=list(reviews),
+                               username=username, title="profile")
     return redirect(url_for("auth.login"))
 
 

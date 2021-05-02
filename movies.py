@@ -48,7 +48,7 @@ def display_movies():
 @movies.route("/movies", methods=["POST", "GET"])
 def search_movies():
     """
-    Search for movies in the movie database 
+    Search for movies in the movie database
     """
     form = ReviewForm()
     # Workaround to pop movie results from session on page reload
