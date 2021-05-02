@@ -5,7 +5,7 @@
 {% block content %}
 <div class="row main-wrapper">
   <div class="row">
-    <h4 class="white-text center-align">Wiew reviews or create your own</h4>
+    <h4 class="header-text center-align">Wiew reviews or create your own</h4>
     <div
       class="black text-white col container s12 m12 push-l1 l4 push-xl1 xl4 review-frame"
     >
@@ -22,7 +22,9 @@
         method="POST"
         action="{{ url_for('movies.review', movie_id=movie_id) }}"
       >
-        {{ form.csrf_token }} {{ render_field(form.review) }}
+        {{ form.csrf_token }}
+        <!-- Render review form -->
+        {{ render_field(form.review) }}
         <input
           type="submit"
           class="btn-large submit-button"
