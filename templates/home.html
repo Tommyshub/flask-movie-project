@@ -4,14 +4,14 @@
 {% block content %}
 <div class="row main-wrapper">
   <div class="home">
-    <h4>Welcome to the Movie Review Site</h4>
+    <h4 class="header-text">Welcome to the Movie Review Site</h4>
     <p class="home-text">
       If you don't already have an account you can
       <a href="{{ url_for('auth.register') }}">create one here</a>
       or <a href="{{ url_for('auth.login') }}">login here</a> if you have one.
     </p>
     <img
-      src="{{ url_for('static', filename='img/it.png') }}"
+      src="{{ url_for('static', filename='img/home.png') }}"
       alt="Movie Review Image"
     />
   </div>
