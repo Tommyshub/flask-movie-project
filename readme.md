@@ -219,6 +219,8 @@ I have changed computer since first starting this project and now it formats the
 
 I had to add comments in between the jinja2 code because the prettier extension does not handle that type of code.
 
+There is one formatting error that I left there on purpose in the edit review template. It put a space in the form in the actual template if I put the correct formatting there so I decided to leave it as it is.
+
 ### HTML validation
 
 I tried using online html validators to check my code but I could not find any that handled jinja2 and flask so I got a lot of errors because of that code. But as far as a can tell there was no issues with the actual html after coming back and fixing the old issues.
