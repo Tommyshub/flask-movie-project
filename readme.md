@@ -113,6 +113,12 @@ After getting feedback on this project and coming back to it I realized that my 
 
 I decided to change the colors and the layout and I also added a new home template and changed the old one to be movies instead.
 
+## Future design
+
+In the future there are two parts of my design I would like to improve. The home template is as of now a bit of an afterthought and I would like to figure out somethging better to display there in the future. The
+
+I would also like to improve how the reviews are displayed at the profile and the review page.
+
 ## Technologies Used
 
 ### Languages
@@ -123,7 +129,7 @@ I decided to change the colors and the layout and I also added a new home templa
 
 - [Python](<https://en.wikipedia.org/wiki/Python_(programming_language)>)
 
-### Tools & ries
+### Tools & frameworks
 
 - [Flask](<https://en.wikipedia.org/wiki/Flask_(web_framework)>)
 
@@ -216,6 +222,14 @@ I had to add comments in between the jinja2 code because the prettier extension 
 ### HTML validation
 
 I tried using online html validators to check my code but I could not find any that handled jinja2 and flask so I got a lot of errors because of that code. But as far as a can tell there was no issues with the actual html after coming back and fixing the old issues.
+
+### Links
+
+The error hanlder have worked as expected when manually trying to break links, except for in the review page for a specific movie.
+
+It raises an exception if you change the movie id to something that does not exist and I need to wrap this part of the code in a try, except block.
+
+I did not get this to work yet without partly breaking the search results for the api and this is the last part I need to figure out how to solve.
 
 ### Bandit -a tool designed to find common security issues in Python code.
 
