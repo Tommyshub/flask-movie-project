@@ -298,12 +298,6 @@ I would also like to thank my mentor Reuben Ferrante, his help and advice during
 
 ## My reflections on the project
 
-I am proud of this project and I feel like I have learned a lot when creating it, but I regret not having time to fix the last things that I wanted to.
+I have realized after coming back to this project that I should have waited a bit with submitting it and I should have managed my time much better to start with.
 
-For future projects I should laern to step away from a problem and do something else, either coding or something else.
-
-I spent too much time on issues I had with wtforms and handling of data and I think that it would have been good for me to take a step back and do something else instead of obsessing on an issue that I could not find the answer to at the moment.
-
-I noticed that the answers came to me during breaks when I did other things.
-
-I also knew that I did not have much time when I started this project and I should have managed my time a little bit better so that I could spend the last days testing and fine tuning the project and this is something that I need to keep in mind for future projects.
+I could not get the api I was using to work properly and I was trying to fix that issue until the last moments before submitting the project and because of that I missed alot of issues with my code that I should have seen.
