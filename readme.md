@@ -107,6 +107,12 @@ I used figma to create my wireframes and while most things are exactly as I show
 
 [Desktop Wireframe Image](https://github.com/Tommyshub/flask-movie-project/blob/main/static/assets/wireframes/desktop.png)
 
+## Redesign
+
+After getting feedback on this project and coming back to it I realized that my old design had a lot of flaws and I did not like how it looked.
+
+I decided to change the colors and the layout and I also added a new home template and changed the old one to be movies instead.
+
 ## Technologies Used
 
 ### Languages
