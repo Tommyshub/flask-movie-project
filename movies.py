@@ -116,38 +116,42 @@ def create(movie_id):
 @movies.route("/review/<movie_id>", methods=["POST", "GET"])
 def review(movie_id):
     form = ReviewForm()
-    # Get current user for review info
-    user = session["user"].capitalize()
-    # Connection to the movie database
-    movie = tmdb.Movies(movie_id)
-    response = movie.info()
-    # Create veriables for title, overview and post path.
-    movie_title = movie.title
-    movie_id = movie.id
-    movie_overview = movie.overview
-    poster_path = movie.poster_path
-    # Information about movies that will be
-    reviews = list(mongo.db.reviews.find({}, {'movie_id': 1,
-                                              'movie_title': 1, 'username': 1,
-                                              'review_text': 1, '_id': 1}))
+    if session.get('user'):
+        # Get current user for review info
+        user = session["user"].capitalize()
+        # Connection to the movie database
+        movie = tmdb.Movies(movie_id)
+        response = movie.info()
+        # Create veriables for title, overview and post path.
+        movie_title = movie.title
+        movie_id = movie.id
+        movie_overview = movie.overview
+        poster_path = movie.poster_path
+        # Information about movies that will be
+        reviews = list(mongo.db.reviews.find({}, {'movie_id': 1,
+                                                  'movie_title': 1, 'username': 1,
+                                                  'review_text': 1, '_id': 1}))
 
-    # Review information to send to the database
-    review_info = {
-        "movie_id": movie_id,
-        "movie_title": movie.title,
-        "username": user,
-        "review_text": request.form.get("review")
-    }
+        # Review information to send to the database
+        review_info = {
+            "movie_id": movie_id,
+            "movie_title": movie.title,
+            "username": user,
+            "review_text": request.form.get("review")
+        }
 
-    if form.review.data and request.method == 'POST':
-        mongo.db.reviews.insert_one(review_info)
-        flash("Successfully posted your review", "success")
-        return redirect(url_for("movies.review", movie_id=movie_id))
-    return render_template('review.html', form=form,
-                           reviews=reviews, movie_id=movie_id,
-                           movie_title=movie_title,
-                           movie_overview=movie_overview,
-                           poster_path=poster_path, user=user)
+        if form.review.data and request.method == 'POST':
+            mongo.db.reviews.insert_one(review_info)
+            flash("Successfully posted your review", "success")
+            return redirect(url_for("movies.review", movie_id=movie_id))
+        return render_template('review.html', form=form,
+                               reviews=reviews, movie_id=movie_id,
+                               movie_title=movie_title,
+                               movie_overview=movie_overview,
+                               poster_path=poster_path, user=user)
+    else:
+        flash("You need to login in order to view reviews", "error")
+        return redirect(url_for("auth.login"))
 
 
 @movies.route("/edit_review/<review_id>", methods=["GET", "POST"])
