@@ -39,7 +39,7 @@ body {
 ############### 
  */
 
-.navbar-wrapper {
+.nav-wrapper {
   background-color: #437085;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
@@ -289,5 +289,32 @@ body {
   }
   .review-text {
     width: 24rem;
+  }
+}
+
+/* On screens that are 624px or less */
+@media screen and (max-width: 624px) {
+  .nav-links {
+    font-size: 1rem;
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+}
+
+/* On screens that are 414px or less */
+@media screen and (max-width: 414px) {
+  .nav-links {
+    font-size: 0.8rem;
+    padding-right: 6px;
+    padding-left: 6px;
+  }
+}
+
+/* On screens that are 326px or less */
+@media screen and (max-width: 326px) {
+  .nav-links {
+    font-size: 0.6rem;
+    padding-right: 4px;
+    padding-left: 4px;
   }
 }
