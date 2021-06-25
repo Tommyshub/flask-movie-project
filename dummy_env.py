@@ -14,4 +14,4 @@ os.environ.setdefault(
 os.environ.setdefault("MONGO_DBNAME", "")
 os.environ.setdefault("TMDB_KEY", "")
 os.environ.setdefault(
-    "REDIS_URI", "") """
+    "REDIS_URL", "") """
