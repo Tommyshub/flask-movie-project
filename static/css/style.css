@@ -40,25 +40,20 @@ body {
  */
 
 .navbar-wrapper {
-  display: block;
   background-color: #437085;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
 }
 
-.navbar-wrapper li {
-  text-transform: uppercase;
-  font-size: 4rem;
-  color: #161a1d;
-}
-
 .nav-links {
+  text-transform: uppercase;
+  color: #161a1d;
   font-size: 1.4rem;
   font-weight: 700;
   color: #161a1d;
 }
 
-.navbar-wrapper li:hover {
+.nav-links:hover {
   background-color: #61a3c2;
 }
 
@@ -294,26 +289,5 @@ body {
   }
   .review-text {
     width: 24rem;
-  }
-}
-
-/* On screens that are 486px or less */
-@media screen and (max-width: 486px) {
-  .nav-links {
-    font-size: 1rem;
-  }
-}
-
-/* On screens that are 392px or less */
-@media screen and (max-width: 392px) {
-  .nav-links {
-    font-size: 0.8rem;
-  }
-}
-
-/* On screens that are 392px or less */
-@media screen and (max-width: 350px) {
-  .nav-links {
-    font-size: 0.6rem;
   }
 }

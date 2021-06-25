@@ -25,53 +25,49 @@
       <div class="row">
         <div>
           <nav class="navbar-wrapper">
-            <div class="container">
-              <div class="row">
-                <div class="col push-xl4 push-l3 push-m2">
-                  <ul>
-                    <!-- If statement so that different pages are not displayed at the same time  -->
-                    {% if session.user %}
-                    <li>
-                      <a
-                        class="nav-links"
-                        href="{{ url_for('movies.search_movies') }}"
-                        >Home</a
-                      >
-                    </li>
-                    <li>
-                      <a
-                        class="nav-links"
-                        href="{{ url_for('auth.profile', username=session['user']) }}"
-                        >Profile</a
-                      >
-                    </li>
-                    <li>
-                      <a class="nav-links" href="{{ url_for('auth.logout') }}"
-                        >Log Out</a
-                      >
-                    </li>
-                    {% else %}
-                    <li>
-                      <a
-                        class="nav-links"
-                        href="{{ url_for('movies.search_movies') }}"
-                        >Home</a
-                      >
-                    </li>
-                    <li>
-                      <a class="nav-links" href="{{ url_for('auth.login') }}"
-                        >Login</a
-                      >
-                    </li>
-                    <li>
-                      <a class="nav-links" href="{{ url_for('auth.register') }}"
-                        >Register</a
-                      >
-                    </li>
-                    {% endif %}
-                  </ul>
-                </div>
-              </div>
+            <div class="brand-logo center">
+              <ul class="nav-ul">
+                <!-- If statement so that different pages are not displayed at the same time  -->
+                {% if session.user %}
+                <li>
+                  <a
+                    class="nav-links"
+                    href="{{ url_for('movies.search_movies') }}"
+                    >Home</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="nav-links"
+                    href="{{ url_for('auth.profile', username=session['user']) }}"
+                    >Profile</a
+                  >
+                </li>
+                <li>
+                  <a class="nav-links" href="{{ url_for('auth.logout') }}"
+                    >Log Out</a
+                  >
+                </li>
+                {% else %}
+                <li>
+                  <a
+                    class="nav-links"
+                    href="{{ url_for('movies.search_movies') }}"
+                    >Home</a
+                  >
+                </li>
+                <li>
+                  <a class="nav-links" href="{{ url_for('auth.login') }}"
+                    >Login</a
+                  >
+                </li>
+                <li>
+                  <a class="nav-links" href="{{ url_for('auth.register') }}"
+                    >Register</a
+                  >
+                </li>
+                {% endif %}
+              </ul>
             </div>
           </nav>
         </div>
