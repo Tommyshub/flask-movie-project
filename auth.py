@@ -69,7 +69,7 @@ def login():
                 flash("Welcome, {}".format(
                     request.form.get("username")), "success")
                 return redirect(url_for(
-                    "auth.profile", username=session["user"]))
+                    "movies.display_movies", username=session["user"]))
 
             else:
                 # Invalid username or password
