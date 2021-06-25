@@ -129,8 +129,10 @@ def review(movie_id):
         poster_path = movie.poster_path
         # Information about movies that will be
         reviews = list(mongo.db.reviews.find({}, {'movie_id': 1,
-                                                  'movie_title': 1, 'username': 1,
-                                                  'review_text': 1, '_id': 1}))
+                                                  'movie_title': 1,
+                                                  'username': 1,
+                                                  'review_text': 1,
+                                                  '_id': 1}))
 
         # Review information to send to the database
         review_info = {
