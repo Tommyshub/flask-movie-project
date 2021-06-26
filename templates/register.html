@@ -24,13 +24,10 @@
           {{ render_field(form.confirm) }}
         </dl>
       </div>
-      <input
-        type="submit"
-        class="col s12 btn-large submit-button"
-        value="Register"
-      />
+      <input type="submit" class="btn-large submit-button" value="Register" />
+      <p>Or</p>
       <a class="btn-small submit-button" href="{{ url_for('auth.login') }}"
-        >Already Have An Account?</a
+        >Login</a
       >
     </form>
   </div>

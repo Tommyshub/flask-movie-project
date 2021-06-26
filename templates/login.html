@@ -20,13 +20,10 @@
           {{ render_field(form.password) }}
         </dl>
       </div>
-      <input
-        type="submit"
-        class="col s12 btn-large submit-button"
-        value="Login"
-      />
+      <input type="submit" class="btn-large submit-button" value="Login" />
+      <p>Or</p>
       <a class="btn-small submit-button" href="{{ url_for('auth.register') }}"
-        >Don't Have An Account?</a
+        >Create Account</a
       >
     </form>
   </div>
