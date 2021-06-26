@@ -166,7 +166,7 @@ body {
 }
 
 .review-image {
-  width: 99%;
+  max-height: 430px;
 }
 
 #review {
