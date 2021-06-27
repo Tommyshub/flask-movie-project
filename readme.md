@@ -285,7 +285,7 @@ You can [go here](https://flask-movie-project.herokuapp.com/) if you are interes
 
 ### Local deployment
 
-#### If you want to run my website locally you can download it from [here](https://github.com/Gretaah/milestone-project1/archive/master.zip) and after that you can follow these steps:
+#### If you want to run my website locally you can download it from [here](https://github.com/Gretaah/milestone-project1/archive/master.zip) and follow these steps:
 
 - Right click on the file and unzip it.
 
@@ -293,7 +293,7 @@ You can [go here](https://flask-movie-project.herokuapp.com/) if you are interes
 
 - Rename dummy_env.py to env.py
 
-- Navigate to the unzipped folder in your terminal and run pip install -r requirements.txt in order to install all required dependencies
+- Navigate to the unzipped folder in your terminal and run pip install -r requirements.txt to install all required dependencies
 
 - Open the env.py file in your editor in order to add the credentials you will need to run this website locally.
 
@@ -307,7 +307,7 @@ You can [go here](https://flask-movie-project.herokuapp.com/) if you are interes
 
 - Add the name of your collection to the MONGO_DBNAME variable in the env.py file.
 
-You will also need to get a redis server to store sessions in, I am using the one provided by Heroku in the deployed version but to get one to run this project locally you can either download and run it on your own server or get one that is hosted for your. I will link to an article below with some tips on providers you can use.
+You will also need to get a Redis server to store sessions. I am using the one provided by Heroku in the deployed version but to get one to run this project locally you can either download and run it on your own server or get one that is hosted for you. I have linked to an article below with some suggestions on providers you can use.
 
 - [Redis Server Providers](https://geekflare.com/redis-hosting-platform/)
 
