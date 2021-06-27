@@ -283,13 +283,39 @@ I performed the following steps in deploying my site:
 
 You can [go here](https://flask-movie-project.herokuapp.com/) if you are interested in checking out my website.
 
-#### If you want to run my website locally you can download it from [here](https://github.com/Gretaah/milestone-project1/archive/master.zip) and after that you can:
+### Local deployment
+
+#### If you want to run my website locally you can download it from [here](https://github.com/Gretaah/milestone-project1/archive/master.zip) and after that you can follow these steps:
 
 - Right click on the file and unzip it.
 
 - Navigate to the unzipped folder.
 
-- double click on index.html to start the file in youwser.
+- Rename dummy_env.py to env.py
+
+- Navigate to the unzipped folder in your terminal and run pip install -r requirements.txt in order to install all required dependencies
+
+- Open the env.py file in your editor in order to add the credentials you will need to run this website locally.
+
+- Start by creating a MongoDB account [here](https://www.mongodb.com/)
+
+- Create a new cluster in your new MongoDB account, you can call this cluster anything you want. You should also create a new collection that also can be named anything you want.
+
+- In your new collection you need to create three entries: movies, reviews and users.
+
+- Now navigate to clusters, connect, connect your application and choose your python version and copy the provided uri and add that to the MONGO_URI in the env.py file. You should also replace the password part with the password you used to sign-up to MongoDB.
+
+- Add the name of your collection to the MONGO_DBNAME variable in the env.py file.
+
+You will also need to get a redis server to store sessions in, I am using the one provided by Heroku in the deployed version but to get one to run this project locally you can either download and run it on your own server or get one that is hosted for your. I will link to an article below with some tips on providers you can use.
+
+- [Redis Server Providers](https://geekflare.com/redis-hosting-platform/)
+
+- Add your redis credentials to the env.py file.
+
+- Navigate to the unzipped folder and run python3 app.py in your terminal.
+
+- Open the link seen in your terminal.
 
 ## Credits
 
