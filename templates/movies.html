@@ -72,14 +72,14 @@
             <!-- If there's a poster image -->
             {% if res.poster_path is not none %}
             <img
-              class="review-image"
+              class="review-image search-results"
               src="https://image.tmdb.org/t/p/w300/{{ res.poster_path }}"
               alt="Movie Poster"
             />
             <!-- Else display image not found -->
             {% else %}
             <img
-              class="review-image"
+              class="review-image search-results"
               src="{{'static/img/not-found.png'}}"
               alt="No Poster Found"
             />
