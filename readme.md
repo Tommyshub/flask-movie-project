@@ -247,6 +247,18 @@ This should be fine when deployed to Heroku and I did not change this setting.
 
 I intented to to this as a last step but I did not have time for this unfortunately.
 
+### Testing done after June 24th
+
+- Once again checked all python files for pep8 errors but.
+
+- Scanned the css file and added a missing colon.
+
+- I scanned the html from the deployed html and found no errors. But since I knew there were some errors in my html I decided to scan the local files and check for errors not related to jinja code. I found one error in the movies.html that I fixed.
+
+- Checked if the page is responsive with the Am I Responsive tool.
+
+- Manually checked if the site is responsive to make sure pages like the search results that cannot be scanned with the Am I Responsive tool is oka as well.
+
 ## Deployment
 
 ### I created this site with vscode and git and pushed it to github where I published the site.
@@ -367,15 +379,3 @@ I could not get the api I was using to work properly and I was trying to fix tha
 - Changed the class for the images in the search results so that the max-height value only will be used on the images displayed there.
 
 - Deleted the image used on the old home page.
-
-## Testing done after June 24th
-
-- Once again checked all python files for pep8 errors but I did not find any.
-
-- Scanned the css file and added a missing colon.
-
-- I scanned the html from the deployed html and found no errors. But since I knew there were some errors in my html I decided to scan the local files and check for errors not related to jinja code. I found one error in the movies.html that I fixed.
-
-- Checked if the page is responsive with the Am I Responsive tool.
-
-- Manually checked if the site is responsive to make sure pages like the search results that cannot be scanned with the Am I Responsive tool is oka as well.
