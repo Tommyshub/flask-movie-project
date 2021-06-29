@@ -350,7 +350,7 @@ I could not get the api I was using to work properly and I was trying to fix tha
 
 - Changed the movies page so that only users that are logged in can search for movies and view reviews. I did this because I do not want people to be able to spam the API and I do not want users that are not registered to be able to view reviews.
 
-- Fixed a formatting error in the css file. I
+- Fixed a formatting error in the css file.
 
 - Removed a value property from the create review form because that property is not supposed to be used on a form.
 
@@ -358,7 +358,7 @@ I could not get the api I was using to work properly and I was trying to fix tha
 
 - Added media queries for the navbar.
 
-- Added an image to replace images that are not found when searching for movies, I tried blocking these movies from being showed at all before but that messed up the layout of the search results.
+- Added an image to replace images that are not found when searching for movies, I tried blocking these movies from being shown at all before but that messed up the layout of the search results.
 
 - Changed so that users are redirected to the movies page instead of their profile after logging in. I feel that this makes more sense because most users would go there first rather than to their profile page.
 
@@ -367,3 +367,15 @@ I could not get the api I was using to work properly and I was trying to fix tha
 - Changed the class for the images in the search results so that the max-height value only will be used on the images displayed there.
 
 - Deleted the image used on the old home page.
+
+## Testing done after June 24th
+
+- Once again checked all python files for pep8 errors but I did not find any.
+
+- Scanned the css file and added a missing colon.
+
+- I scanned the html from the deployed html and found no errors. But since I knew there were some errors in my html I decided to scan the local files and check for errors not related to jinja code. I found one error in the movies.html that I fixed.
+
+- Checked if the page is responsive with the Am I Responsive tool.
+
+- Manually checked if the site is responsive to make sure pages like the search results that cannot be scanned with the Am I Responsive tool is oka as well.
