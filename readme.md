@@ -343,3 +343,27 @@ I would also like to thank my mentor Reuben Ferrante, his help and advice during
 I have realized after coming back to this project that I should have waited a bit with submitting it and I should have managed my time much better to start with.
 
 I could not get the api I was using to work properly and I was trying to fix that issue until the last moments before submitting the project and because of that I missed alot of issues with my code that I should have seen.
+
+## Changes made after June 24th
+
+- Removed the home page and replaced it with the movies page.
+
+- Changed the movies page so that only users that are logged in can search for movies and view reviews. I did this because I do not want people to be able to spam the API and I do not want users that are not registered to be able to view reviews.
+
+- Fixed a formatting error in the css file. I
+
+- Removed a value property from the create review form because that property is not supposed to be used on a form.
+
+- Updated classes for the navbar to better center it and I also updated the html structure for the navbar.
+
+- Added media queries for the navbar.
+
+- Added an image to replace images that are not found when searching for movies, I tried blocking these movies from being showed at all before but that messed up the layout of the search results.
+
+- Changed so that users are redirected to the movies page instead of their profile after logging in. I feel that this makes more sense because most users would go there first rather than to their profile page.
+
+- Rewrote the local deployment.
+
+- Changed the class for the images in the search results so that the max-height value only will be used on the images displayed there.
+
+- Deleted the image used on the old home page.
