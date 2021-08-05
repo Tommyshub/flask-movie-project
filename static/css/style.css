@@ -149,6 +149,7 @@ body {
   text-align: center;
   border-radius: 30px;
   box-shadow: 0 7px 12px 0 rgba(0, 0, 0, 0.6);
+  overflow: hidden;
 }
 
 .review-container {
@@ -163,6 +164,10 @@ body {
 .review-text {
   font-size: 1.2rem;
   width: 36rem;
+}
+
+.review-image {
+  width: 90%;
 }
 
 .search-results {
@@ -275,7 +280,7 @@ body {
 /* On screens that are 1388px or less */
 @media screen and (max-width: 1388px) {
   .review-container {
-    width: 30rem;
+    width: 26rem;
   }
   .review-text {
     width: 26rem;
@@ -285,7 +290,7 @@ body {
 /* On screens that are 1182px or less */
 @media screen and (max-width: 1182px) {
   .review-container {
-    width: 28rem;
+    width: 24rem;
   }
   .review-text {
     width: 24rem;
